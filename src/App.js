@@ -38,7 +38,7 @@ export default function App() {
 
   return (
     <>
-      {roomID ? <><h1>Connect 420 - {roomID}</h1><h3>{status}</h3></> : <h1>Connect 420</h1>}
+      {roomID ? <><a href="/">Connect 420 - {roomID}</a><h3>{status}</h3></> : <h1>Connect 420</h1>}
       {roomID ?
         board ? <GameBoard board={board} /> : null : <MenuScreen />
       }
