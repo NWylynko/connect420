@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "connect420",
     "public": "build",
     "ignore": [
       "firebase.json",

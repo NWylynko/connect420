@@ -14,7 +14,7 @@ export default function App() {
   })
 
   useEffect(() => {
-    socket = io('potato.wylynko.com/connect420');
+    socket = io('https://potato.wylynko.com');
     socket.on("connect", () => { setConnected(true); setStatus("waiting for other player..."); joinRoom(); console.log(socket.id) })
     socket.on("disconnect", () => { setConnected(false); setStatus("not connected to server...") })
 
