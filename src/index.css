@@ -29,4 +29,6 @@ code {
 
 h1 {
   font-size: 5vmin;
+  color: var(--white);
+  
 }
