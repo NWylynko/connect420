@@ -1,0 +1,31 @@
+.container {
+    display: inline-grid;
+    /* grid-template-columns: 100px 100px 100px 100px 100px 100px 100px; */
+    grid-template-columns: repeat(7, 110px);
+    /* grid-template-rows: 100px 100px 100px 100px 100px 100px 100px; */
+    grid-gap: 15px 15px;
+  }
+
+.empty {
+    /* background-color: white; */
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.red {
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.yellow {
+    background-color: yellow;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
