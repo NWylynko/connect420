@@ -1,31 +1,24 @@
 .container {
     display: inline-grid;
-    /* grid-template-columns: 100px 100px 100px 100px 100px 100px 100px; */
-    grid-template-columns: repeat(7, 110px);
-    /* grid-template-rows: 100px 100px 100px 100px 100px 100px 100px; */
-    grid-gap: 15px 15px;
-  }
 
-.empty {
-    /* background-color: white; */
-    width: 100px;
-    height: 100px;
+    grid-template-columns: repeat(7, 10vmin);
+    grid-gap: 2vmin;
+
+}
+
+.coin {
+    width: 10vmin;
+    height: 10vmin;
     border-radius: 50%;
-    border: 2px solid white;
+    border: 2px dotted var(--white);
 }
 
 .red {
-    background-color: red;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 2px solid white;
+    background-color: var(--red);
+    border-style: solid;
 }
 
 .yellow {
-    background-color: yellow;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 2px solid white;
+    background-color: var(--yellow);
+    border-style: solid;
 }
