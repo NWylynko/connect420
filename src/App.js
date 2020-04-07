@@ -19,8 +19,8 @@ export default function App() {
 
   useEffect(() => {
     if (roomID) {
-      socket = io('https://potato.wylynko.com');
-      // socket = io('http://192.168.0.109:3001')
+      // socket = io('https://potato.wylynko.com');
+      socket = io('http://192.168.0.109:3002')
       socket.on("connect", () => { setConnected(true); setStatus("waiting for other player..."); socket.emit("room", roomID); console.log(socket.id) })
       socket.on("disconnect", () => { setConnected(false); setStatus("not connected to server...") })
 
@@ -38,19 +38,19 @@ export default function App() {
   }, [connected])
 
   return (
-    <>
+    <div style={info.playerNum === 1 ? { '--playerColor': 'var(--red)' } : info.playerNum === 2 ? { '--playerColor': 'var(--yellow)' } : { '--playerColor': 'var(--blue)' }} >
       {roomID ? <><a href="/" style={{ textDecoration: 'none' }}><h2>Connect 420 - {roomID}</h2></a><h3>{status}</h3></> : <h1>Connect 420</h1>}
       {roomID ?
-        board ? <GameBoard board={board} info={info} /> : <><p>Send this link to your friend for them to join: </p><p>https://connect420.web.app/{roomID}</p></> : <MenuScreen />
+        board ? <GameBoard board={board} /> : <><p>Send this link to your friend for them to join: </p><p>https://connect420.web.app/{roomID}</p></> : <MenuScreen />
       }
 
-    </>
+    </div>
   );
 }
 
-function GameBoard({ board, info }) {
+function GameBoard({ board }) {
   return (
-    <div className={styles.container} style={info.playerNum === 1 ? { boxShadow: '5px 10px var(--red)' } : { boxShadow: '5px 10px var(--yellow)' }}>
+    <div className={styles.container} >
 
       {board.map(
         (col, x) => col.map(

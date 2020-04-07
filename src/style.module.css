@@ -8,6 +8,19 @@
     border-radius: 4vmin;
     padding: 4vmin;
 
+    box-shadow: 5px 10px var(--playerColor);
+
+}
+
+@media (min-width: 900px) {
+    .container {
+
+        grid-template-columns: repeat(7, 90px);
+        grid-gap: 25px;
+        box-shadow: 10px 20px var(--playerColor);
+        padding: 35px;
+    }
+    
 }
 
 .coin {
@@ -17,22 +30,34 @@
     border: 2px dotted var(--white);
 }
 
+.coin:hover {
+    box-shadow: 2px 4px var(--playerColor);
+}
+
 .red {
     background-color: var(--red);
     border-style: solid;
     box-shadow: 2px 4px var(--red);
+    animation: drop 1s linear forwards;
 }
 
 .yellow {
     background-color: var(--yellow);
     border-style: solid;
     box-shadow: 2px 4px var(--yellow);
+    animation: drop 1s linear forwards;
     
 }
 
-@media (min-width: 600px) {
+@media (min-width: 900px) {
     .coin {
+        width: 90px;
+        height: 90px;
         border: 4px dotted var(--white);
+    }
+
+    .coin:hover {
+        box-shadow: 4px 8px var(--playerColor);
     }
 
     .red {
@@ -47,15 +72,11 @@
     
 }
 
-/* .animatedCoin {
-    animation: drop 0.5s linear forwards;
-}
-
 @keyframes drop {
     from {
-      transform: translateY(0px);
+      transform: translateY(-1000px);
     }
     to { 
-      transform: translateY(82vmin);
+      transform: translateY(0px);
     }
-  } */
+  }

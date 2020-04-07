@@ -7,7 +7,7 @@ export function MenuScreen() {
   <div className={styles.container}>
     <button className={styles.button} onClick={joinLobby}>Find a game</button>
     <button className={styles.button} onClick={newRoom}>Create a private game</button>
-    <input className={styles.input} value={room} onChange={e => setRoom(e.target.value)} type="text" name="roomID" placeholder="room" />
+    <input className={styles.button} value={room} onChange={e => setRoom(e.target.value)} type="text" name="roomID" placeholder="room" />
     <button className={styles.button} onClick={() => { joinRoom(room); }}>Join a private game</button>
   </div>
   );

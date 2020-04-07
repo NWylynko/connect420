@@ -31,9 +31,11 @@ code {
 h1 {
   font-size: 15vmin;
   color: var(--white);
-  
+  text-shadow: 0.5vmin 1vmin var(--yellow), 1vmin 2vmin var(--red);
 }
 
 h2 {
   color: var(--white);
+  text-shadow: 0.25vmin 0.5vmin var(--yellow), 0.5vmin 1vmin var(--red);
+  font-size: 5vmin;
 }
