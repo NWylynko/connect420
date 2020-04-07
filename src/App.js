@@ -39,9 +39,9 @@ export default function App() {
 
   return (
     <>
-      {roomID ? <><a href="/" style={{textDecoration: 'none'}}><h2>Connect 420 - {roomID}</h2></a><h3>{status}</h3></> : <h1>Connect 420</h1>}
+      {roomID ? <><a href="/" style={{ textDecoration: 'none' }}><h2>Connect 420 - {roomID}</h2></a><h3>{status}</h3></> : <h1>Connect 420</h1>}
       {roomID ?
-        board ? <GameBoard board={board} info={info} /> : null : <MenuScreen />
+        board ? <GameBoard board={board} info={info} /> : <><p>Send this link to your friend for them to join: </p><p>https://connect420.web.app/{roomID}</p></> : <MenuScreen />
       }
 
     </>
@@ -50,12 +50,12 @@ export default function App() {
 
 function GameBoard({ board, info }) {
   return (
-    <div className={styles.container} style={info.playerNum === 1 ? {boxShadow: '5px 10px var(--red)'} : {boxShadow: '5px 10px var(--yellow)'}}>
+    <div className={styles.container} style={info.playerNum === 1 ? { boxShadow: '5px 10px var(--red)' } : { boxShadow: '5px 10px var(--yellow)' }}>
 
       {board.map(
         (col, x) => col.map(
           (row, y) => (
-            <Item key={"board" + x + y} value={row} y={y}  />
+            <Item key={"board" + x + y} value={row} y={y} />
           )
         )
       )
