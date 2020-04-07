@@ -19,8 +19,8 @@ export default function App() {
 
   useEffect(() => {
     if (roomID) {
-      // socket = io('https://potato.wylynko.com');
-      socket = io('http://192.168.0.109:3002')
+      socket = io('https://potato.wylynko.com');
+      // socket = io('http://192.168.0.109:3002')
       socket.on("connect", () => { setConnected(true); setStatus("waiting for other player..."); socket.emit("room", roomID); console.log(socket.id) })
       socket.on("disconnect", () => { setConnected(false); setStatus("not connected to server...") })
 
