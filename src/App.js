@@ -11,6 +11,7 @@ export default function App() {
   const [board, setBoard] = useState()
   const [status, setStatus] = useState("Welcome");
   const [connected, setConnected] = useState(false)
+  const [info, setInfo] = useState({})
 
   useEffect(() => {
     console.log('render')
@@ -25,6 +26,8 @@ export default function App() {
 
       socket.on("status", setStatus);
       socket.on("board", setBoard);
+      socket.on("info", setInfo);
+      socket.on("setRoom", room => window.location.pathname = "/" + room)
 
     }
 
@@ -34,27 +37,25 @@ export default function App() {
     console.log(connected ? "connected" : "disconnected")
   }, [connected])
 
-
-
   return (
     <>
-      {roomID ? <><a href="/" style={{textDecoration: 'none'}}><h1>Connect 420 - {roomID}</h1></a><h3>{status}</h3></> : <h1>Connect 420</h1>}
+      {roomID ? <><a href="/" style={{textDecoration: 'none'}}><h2>Connect 420 - {roomID}</h2></a><h3>{status}</h3></> : <h1>Connect 420</h1>}
       {roomID ?
-        board ? <GameBoard board={board} /> : null : <MenuScreen />
+        board ? <GameBoard board={board} info={info} /> : null : <MenuScreen />
       }
 
     </>
   );
 }
 
-function GameBoard({ board }) {
+function GameBoard({ board, info }) {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={info.playerNum === 1 ? {boxShadow: '5px 10px var(--red)'} : {boxShadow: '5px 10px var(--yellow)'}}>
 
       {board.map(
         (col, x) => col.map(
           (row, y) => (
-            <Item key={"board" + x + y} value={row} y={y} />
+            <Item key={"board" + x + y} value={row} y={y}  />
           )
         )
       )

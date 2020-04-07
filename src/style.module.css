@@ -2,7 +2,11 @@
     display: inline-grid;
 
     grid-template-columns: repeat(7, 10vmin);
-    grid-gap: 2vmin;
+    grid-gap: 3vmin;
+
+    border: 3px solid var(--white);
+    border-radius: 4vmin;
+    padding: 4vmin;
 
 }
 
@@ -16,9 +20,42 @@
 .red {
     background-color: var(--red);
     border-style: solid;
+    box-shadow: 2px 4px var(--red);
 }
 
 .yellow {
     background-color: var(--yellow);
     border-style: solid;
+    box-shadow: 2px 4px var(--yellow);
+    
 }
+
+@media (min-width: 600px) {
+    .coin {
+        border: 4px dotted var(--white);
+    }
+
+    .red {
+        border-style: solid;
+        box-shadow: 4px 8px var(--red);
+    }
+    
+    .yellow {
+        border-style: solid;
+        box-shadow: 4px 8px var(--yellow);
+    }
+    
+}
+
+/* .animatedCoin {
+    animation: drop 0.5s linear forwards;
+}
+
+@keyframes drop {
+    from {
+      transform: translateY(0px);
+    }
+    to { 
+      transform: translateY(82vmin);
+    }
+  } */
