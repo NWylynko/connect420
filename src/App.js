@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './style.module.css'
 import io from "socket.io-client";
 import { MenuScreen } from './MenuScreen';
+import statusDefs from './status'
 
 let socket;
 
@@ -19,12 +20,13 @@ export default function App() {
 
   useEffect(() => {
     if (roomID) {
-      socket = io('https://potato.wylynko.com');
-      // socket = io('http://192.168.0.109:3002')
+      socket = io('https://potato.wylynko.com', { transports: ['websocket'] });
+      // socket = io('http://192.168.0.109:3001', { transports: ['websocket'] })
+      
       socket.on("connect", () => { setConnected(true); setStatus("waiting for other player..."); socket.emit("room", roomID); console.log(socket.id) })
       socket.on("disconnect", () => { setConnected(false); setStatus("not connected to server...") })
 
-      socket.on("status", setStatus);
+      socket.on("status", n => setStatus(statusDefs[n]));
       socket.on("board", setBoard);
       socket.on("info", setInfo);
       socket.on("setRoom", room => window.location.pathname = "/" + room)
