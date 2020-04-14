@@ -4,7 +4,7 @@
     grid-template-columns: repeat(7, 10vmin);
     grid-gap: 3vmin;
 
-    border: 3px solid var(--white);
+    border: 3px solid var(--text);
     border-radius: 4vmin;
     padding: 4vmin;
 
@@ -27,7 +27,7 @@
     width: 10vmin;
     height: 10vmin;
     border-radius: 50%;
-    border: 2px dotted var(--white);
+    border: 2px dotted var(--text);
 }
 
 .coin:hover {
@@ -35,16 +35,16 @@
 }
 
 .red {
-    background-color: var(--red);
+    background-color: var(--player1);
     border-style: solid;
-    box-shadow: 2px 4px var(--red);
+    box-shadow: 2px 4px var(--player1);
     animation: drop 1s linear forwards;
 }
 
 .yellow {
-    background-color: var(--yellow);
+    background-color: var(--player2);
     border-style: solid;
-    box-shadow: 2px 4px var(--yellow);
+    box-shadow: 2px 4px var(--player2);
     animation: drop 1s linear forwards;
     
 }
@@ -53,7 +53,7 @@
     .coin {
         width: 90px;
         height: 90px;
-        border: 4px dotted var(--white);
+        border: 4px dotted var(--text);
     }
 
     .coin:hover {
@@ -62,12 +62,12 @@
 
     .red {
         border-style: solid;
-        box-shadow: 4px 8px var(--red);
+        box-shadow: 4px 8px var(--player1);
     }
     
     .yellow {
         border-style: solid;
-        box-shadow: 4px 8px var(--yellow);
+        box-shadow: 4px 8px var(--player2);
     }
     
 }

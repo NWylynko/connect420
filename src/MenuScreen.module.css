@@ -7,9 +7,10 @@
   padding: 10px;
   margin: 20px;
   border-radius: 5px;
-  background-color: var(--white);
-  box-shadow: 4px 8px var(--yellow), 8px 16px var(--red);
+  background-color: var(--text);
+  box-shadow: 4px 8px var(--player2), 8px 16px var(--player1);
   font-size: 3vmin;
   border: 0;
   text-align: center;
+  color: var(--background);
 }

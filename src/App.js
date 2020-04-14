@@ -13,6 +13,15 @@ export default function App() {
   const [status, setStatus] = useState("Welcome");
   const [connected, setConnected] = useState(false)
   const [info, setInfo] = useState({})
+  const [theme, setTheme] = useState('light')
+
+  useEffect(() => {
+    setTheme(getTheme())
+  }, [])
+
+  useEffect(() => {
+    console.log(theme)
+  }, [theme])
 
   useEffect(() => {
     console.log('render')
@@ -20,9 +29,9 @@ export default function App() {
 
   useEffect(() => {
     if (roomID) {
-      socket = io('https://potato.wylynko.com', { transports: ['websocket'] });
-      // socket = io('http://192.168.0.109:3001', { transports: ['websocket'] })
-      
+      // socket = io('https://potato.wylynko.com', { transports: ['websocket'] });
+      socket = io('http://192.168.0.109:3001', { transports: ['websocket'] })
+
       socket.on("connect", () => { setConnected(true); setStatus("waiting for other player..."); socket.emit("room", roomID); console.log(socket.id) })
       socket.on("disconnect", () => { setConnected(false); setStatus("not connected to server...") })
 
@@ -39,11 +48,32 @@ export default function App() {
     console.log(connected ? "connected" : "disconnected")
   }, [connected])
 
+  function colors() {
+
+    let themes = {
+      light: {
+        '--text': '#3d3d3d',
+        '--background': '#f2f3f5',
+      },
+      dark: {
+        '--text': '#E8E9EB',
+        '--background': '#121113',
+      },
+    }
+
+    let style = themes[theme]
+
+    if (info.type) style['--playerColor'] = `var(--${info.type})` // info.type either player1, player2, viewer or undefined (shouldnt be an issues, will only be undefined at menu screen)
+
+    return style
+
+  }
+
   return (
-    <div style={info.playerNum === 1 ? { '--playerColor': 'var(--red)' } : info.playerNum === 2 ? { '--playerColor': 'var(--yellow)' } : { '--playerColor': 'var(--blue)' }} >
+    <div className="app" style={colors()} >
       {roomID ? <><a href="/" style={{ textDecoration: 'none' }}><h2>Connect 420 - {roomID}</h2></a><h3>{status}</h3></> : <h1>Connect 420</h1>}
       {roomID ?
-        board ? <GameBoard board={board} /> : <><p>Send this link to your friend for them to join: </p><p>https://connect420.web.app/{roomID}</p></> : <MenuScreen />
+        board ? <GameBoard board={board} /> : <><p>Send this link to your friend for them to join: </p><p>https://connect420.web.app/{roomID}</p></> : <MenuScreen theme={theme} setTheme={setTheme} />
       }
 
     </div>
@@ -52,17 +82,19 @@ export default function App() {
 
 function GameBoard({ board }) {
   return (
-    <div className={styles.container} >
+    <div style={{ display: 'inline-flex', width: '100%', justifyContent: 'center', paddingBottom: 15, marginBottom: 15 }}>
+      <div className={styles.container} >
 
-      {board.map(
-        (col, x) => col.map(
-          (row, y) => (
-            <Item key={"board" + x + y} value={row} y={y} />
+        {board.map(
+          (col, x) => col.map(
+            (row, y) => (
+              <Item key={"board" + x + y} value={row} y={y} />
+            )
           )
         )
-      )
-      }
+        }
 
+      </div>
     </div>
   )
 }
@@ -81,4 +113,15 @@ function Item({ value, y }) {
 
 function addCoin(y) {
   socket.emit("addCoin", { y })
+}
+
+function getTheme() {
+
+  let preference = localStorage.getItem("theme")
+
+  if (preference !== null) {
+    return preference
+  } else {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
 }
