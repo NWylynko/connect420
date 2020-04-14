@@ -29,8 +29,12 @@ export default function App() {
 
   useEffect(() => {
     if (roomID) {
-      // socket = io('https://potato.wylynko.com', { transports: ['websocket'] });
-      socket = io('http://192.168.0.109:3001', { transports: ['websocket'] })
+      
+      if (process.env.NODE_ENV === 'development') {
+        socket = io('http://192.168.0.109:3001', { transports: ['websocket'] })
+      } else {
+        socket = io('https://potato.wylynko.com', { transports: ['websocket'] });
+      }
 
       socket.on("connect", () => { setConnected(true); setStatus("waiting for other player..."); socket.emit("room", roomID); console.log(socket.id) })
       socket.on("disconnect", () => { setConnected(false); setStatus("not connected to server...") })
