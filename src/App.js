@@ -10,18 +10,10 @@ let roomID = window.location.pathname.replace('/', '')
 
 export default function App() {
   const [board, setBoard] = useState()
-  const [status, setStatus] = useState("Welcome");
+  const [status, setStatus] = useState("Connecting...");
   const [connected, setConnected] = useState(false)
   const [info, setInfo] = useState({})
-  const [theme, setTheme] = useState('light')
-
-  useEffect(() => {
-    setTheme(getTheme())
-  }, [])
-
-  useEffect(() => {
-    console.log(theme)
-  }, [theme])
+  const [theme, setTheme] = useState(getTheme())
 
   useEffect(() => {
     console.log('render')
