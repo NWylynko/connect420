@@ -1,6 +1,12 @@
 .container {
+  width: 100%;
+  text-align: center; 
+}
+
+.menu {
   display: inline-grid;
-  width: 100%
+  max-width: 900px;
+  width: 100%;
 }
 
 .button {

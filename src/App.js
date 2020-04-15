@@ -10,7 +10,7 @@ let roomID = window.location.pathname.replace('/', '')
 
 export default function App() {
   const [board, setBoard] = useState()
-  const [status, setStatus] = useState("Connecting...");
+  const [status, setStatus] = useState(10);
   const [connected, setConnected] = useState(false)
   const [info, setInfo] = useState({})
   const [theme, setTheme] = useState(getTheme())
@@ -21,17 +21,17 @@ export default function App() {
 
   useEffect(() => {
     if (roomID) {
-      
+
       if (process.env.NODE_ENV === 'development') {
         socket = io('http://192.168.0.109:3001', { transports: ['websocket'] })
       } else {
         socket = io('https://potato.wylynko.com', { transports: ['websocket'] });
       }
 
-      socket.on("connect", () => { setConnected(true); setStatus("waiting for other player..."); socket.emit("room", roomID); console.log(socket.id) })
-      socket.on("disconnect", () => { setConnected(false); setStatus("not connected to server...") })
+      socket.on("connect", () => { setConnected(true); setStatus(11); socket.emit("room", roomID); console.log(socket.id) })
+      socket.on("disconnect", () => { setConnected(false); setStatus(12) })
 
-      socket.on("status", n => setStatus(statusDefs[n]));
+      socket.on("status", setStatus);
       socket.on("board", setBoard);
       socket.on("info", setInfo);
       socket.on("setRoom", room => window.location.pathname = "/" + room)
@@ -43,6 +43,14 @@ export default function App() {
   useEffect(() => {
     console.log(connected ? "connected" : "disconnected")
   }, [connected])
+
+  useEffect(() => {
+    if (board) {
+      window.onbeforeunload = function () {
+        return "If you leave you cant keep playing on this board!";
+      };
+    }
+  }, [board])
 
   function colors() {
 
@@ -67,24 +75,36 @@ export default function App() {
 
   return (
     <div className="app" style={colors()} >
-      {roomID ? <><a href="/" style={{ textDecoration: 'none' }}><h2>Connect 420 - {roomID}</h2></a><h3>{status}</h3></> : <h1>Connect 420</h1>}
       {roomID ?
-        board ? <GameBoard board={board} /> : <><p>Send this link to your friend for them to join: </p><p>https://connect420.web.app/{roomID}</p></> : <MenuScreen theme={theme} setTheme={setTheme} />
+        board ? <GameBoard board={board} status={status} /> : <Header subText={['Send this link to your friend for them to join:', `https://connect420.web.app/${roomID}`]} roomID={roomID} /> : <MenuScreen theme={theme} setTheme={setTheme} />
       }
 
     </div>
   );
 }
 
-function GameBoard({ board }) {
+function Header({ subText, roomID }) {
   return (
+    <>
+      <a href="/" style={{ textDecoration: 'none' }}>
+        <h2>Connect 420 - {roomID}</h2>
+      </a>
+      {subText.map((text, i) => <h3 key={i} >{text}</h3>)}
+    </>
+  )
+}
+
+function GameBoard({ board, status }) {
+  return (
+    <>
+    <Header subText={[statusDefs[status]]} roomID={roomID} />
     <div style={{ display: 'inline-flex', width: '100%', justifyContent: 'center', paddingBottom: 15, marginBottom: 15 }}>
       <div className={styles.container} >
 
         {board.map(
           (col, x) => col.map(
             (row, y) => (
-              <Item key={"board" + x + y} value={row} y={y} />
+              <Item key={"board" + x + y} value={row} y={y} status={status} />
             )
           )
         )
@@ -92,23 +112,27 @@ function GameBoard({ board }) {
 
       </div>
     </div>
+    </>
   )
 }
 
-function Item({ value, y }) {
+function Item({ value, y, status }) {
   if (value === 0) {
-    return <div onClick={() => addCoin(y)} ><div className={styles.coin} /></div>
+    return <div onClick={() => addCoin(y, status)} ><div className={styles.coin} /></div>
   } else if (value === 1) {
-    return <div onClick={() => addCoin(y)} ><div className={[styles.coin, styles.red].join(" ")} /></div>
+    return <div onClick={() => addCoin(y, status)} ><div className={[styles.coin, styles.red].join(" ")} /></div>
   } else if (value === 2) {
-    return <div onClick={() => addCoin(y)} ><div className={[styles.coin, styles.yellow].join(" ")} /></div>
+    return <div onClick={() => addCoin(y, status)} ><div className={[styles.coin, styles.yellow].join(" ")} /></div>
   } else {
     return null
   }
 }
 
-function addCoin(y) {
-  socket.emit("addCoin", { y })
+function addCoin(y, status) {
+  if (status === 1) {
+    socket.emit("addCoin", { y })
+  }
+  
 }
 
 function getTheme() {
