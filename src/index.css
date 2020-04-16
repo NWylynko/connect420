@@ -30,8 +30,16 @@ code {
     monospace;
 }
 
+@font-face {
+  font-family: 'Retronoid';
+  font-style: normal;
+  src: local('Retronoid'), url(./fonts/Retronoid.ttf);
+}
+
 h1 {
   font-size: 15vmin;
+  font-family: 'Retronoid';
+  letter-spacing: 1vmin;
   color: var(--text);
   text-shadow: 0.5vmin 1vmin var(--player2), 1vmin 2vmin var(--player1);
   margin: 10px;
@@ -63,6 +71,10 @@ p {
 @media (max-width: 600px) {
 
   /* mobile */
+
+  h1 {
+    font-size: 12vmin;
+  }
 
   h2 {
     font-size: 7vmin;

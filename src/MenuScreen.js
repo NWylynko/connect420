@@ -3,6 +3,7 @@ import styles from './MenuScreen.module.css'
 
 export function MenuScreen({ theme, setTheme }) {
   const [room, setRoom] = useState("");
+  const [name, setName] = useState("");
 
   function updateTheme() {
 
@@ -20,6 +21,7 @@ export function MenuScreen({ theme, setTheme }) {
     <div className={styles.container}>
       <h1>Connect 420</h1>
       <div className={styles.menu}>
+        <input className={styles.button} value={name} onChange={e => setName(e.target.value)} type="text" name="name" placeholder="Your Name" />
         <button className={styles.button} onClick={joinLobby}>Find a game</button>
         <button className={styles.button} onClick={newRoom}>Create a private game</button>
         <input className={styles.button} value={room} onChange={e => setRoom(e.target.value)} type="text" name="roomID" placeholder="Room" />
