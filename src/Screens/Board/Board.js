@@ -15,7 +15,7 @@ export default function App() {
   const [connected, setConnected] = useState(false)
   const [redirect, setRedirect] = useState()
 
-  let { setInfo } = useContext(StoreContext);
+  let { setInfo, name } = useContext(StoreContext);
   let { room } = useParams();
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function App() {
         socket = io(server, { transports: ['websocket'] });
       }
 
-      socket.on("connect", () => { setConnected(true); setStatus(11); socket.emit("room", room); console.log(socket.id) })
+      socket.on("connect", () => { setConnected(true); setStatus(11); socket.emit("room", room); if (name) socket.emit("name", name); console.log(socket.id) })
       socket.on("disconnect", () => { setConnected(false); setStatus(12) })
 
       socket.on("status", setStatus);
@@ -41,7 +41,7 @@ export default function App() {
       socket.disconnect();
     })
 
-  }, [room, setInfo])
+  }, [room, setInfo, name])
 
   useEffect(() => {
     console.log(connected ? "connected" : "disconnected")

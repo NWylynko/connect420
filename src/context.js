@@ -5,12 +5,14 @@ export const StoreContext = createContext(null);
 export default ({children}) => {
   const [theme, setTheme] = useState(getTheme())
   const [info, setInfo] = useState({})
+  const [name, setName] = useState("")
 
   const store = {
     theme,
     setTheme,
     info, 
     setInfo,
+    name, setName
   };
 
   return (
