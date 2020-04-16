@@ -39,7 +39,7 @@ export function MenuScreen() {
         <button className={styles.button} onClick={updateTheme}>Change to {theme === 'light' ? 'dark' : 'light'} mode</button>
         <Link className={styles.button} to="/credits" >Credits</Link>
         
-        <p>Client: {version} {!loading && !error ? `|| Server: ${data}` : null}</p>
+        <p>Client: {version} {!loading && !error ? `|| Server: ${data.version}` : null}</p>
       </div>
     </div>
   );

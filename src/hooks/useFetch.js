@@ -7,7 +7,8 @@ export default function useFetch(url) {
 
   useEffect(() => {
     fetch(url)
-      .then(setData)
+      .then(response => response.json())
+      .then(data => setData(data))
       .catch(setError)
       .finally(() => { setLoading(false) })
   }, [url])
