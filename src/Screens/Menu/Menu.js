@@ -11,7 +11,7 @@ export function MenuScreen() {
 
   const { theme, setTheme, name, setName } = useContext(StoreContext);
 
-  const { loading, error, data } = useFetch(server + "/version")
+  const { loading, error, data } = useFetch(server + "/c420/version")
 
   function updateTheme() {
 
@@ -47,7 +47,7 @@ export function MenuScreen() {
 
 function LeaderBoard() {
 
-  const { loading, error, data } = useFetch(server + "/leaderboard")
+  const { loading, error, data } = useFetch(server + "/c420/leaderboard")
 
   return (
     <>
