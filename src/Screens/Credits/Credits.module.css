@@ -1,0 +1,10 @@
+.container {
+  width: 100%;
+  text-align: center; 
+}
+
+.body {
+  display: inline-grid;
+  max-width: 750px;
+  width: 100%;
+}

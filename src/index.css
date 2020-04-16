@@ -52,6 +52,8 @@ h1 {
 }
 
 h2 {
+  /* font-family: 'Retronoid'; */
+  /* letter-spacing: 0.5vmin; */
   color: var(--text);
   text-shadow: 0.25vmin 0.5vmin var(--player2), 0.5vmin 1vmin var(--player1);
   font-size: 5vmin;
@@ -70,6 +72,15 @@ h3 {
 p {
   margin: 10px;
   text-align: center;
+}
+
+@media (max-width: 900px) { 
+  /* tablet */
+
+  h1 {
+    font-size: 13vmin;
+  }
+
 }
 
 @media (max-width: 600px) {

@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './fonts/Retronoid.ttf';
+import Navigator from './Navigator';
+import StoreProvider from './context';
+import Themer from './Themer'
 import './index.css';
-import App from './App';
+import './fonts/Retronoid.ttf'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <StoreProvider>
+      <Themer>
+        <Navigator />
+      </Themer>
+    </StoreProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

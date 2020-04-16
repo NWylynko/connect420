@@ -5,7 +5,7 @@
 
 .menu {
   display: inline-grid;
-  max-width: 900px;
+  max-width: 750px;
   width: 100%;
 }
 
@@ -19,4 +19,5 @@
   border: 0;
   text-align: center;
   color: var(--background);
+  text-decoration: none;
 }
