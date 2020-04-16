@@ -5,6 +5,7 @@ import statusDefs from '../../status';
 import Header from '../../Components/Header'
 import { useParams, Redirect } from "react-router-dom";
 import { StoreContext } from '../../context';
+import { server } from '../../config';
 
 let socket;
 
@@ -23,7 +24,7 @@ export default function App() {
       if (process.env.NODE_ENV === 'development') {
         socket = io('http://localhost:3001', { transports: ['websocket'] })
       } else {
-        socket = io('https://potato.wylynko.com', { transports: ['websocket'] });
+        socket = io(server, { transports: ['websocket'] });
       }
 
       socket.on("connect", () => { setConnected(true); setStatus(11); socket.emit("room", room); console.log(socket.id) })

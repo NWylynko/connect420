@@ -1,0 +1,1 @@
+export const server = "https://potato.wylynko.com"
