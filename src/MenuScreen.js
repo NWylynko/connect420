@@ -27,9 +27,21 @@ export function MenuScreen({ theme, setTheme }) {
         <input className={styles.button} value={room} onChange={e => setRoom(e.target.value)} type="text" name="roomID" placeholder="Room" />
         <button className={styles.button} onClick={() => { joinRoom(room); }}>Join a private game</button>
         <button className={styles.button} onClick={updateTheme}>Change to {theme === 'light' ? 'dark' : 'light'} mode</button>
+        <Credits />
       </div>
     </div>
   );
+}
+
+function Credits() {
+  return (
+    <>
+      <p>Game made by <a href="https://nick.wylynko.com">Nick Wylynko</a></p>
+      <p>Title font <a href="https://www.dafont.com/retronoid.font">Retronoid</a> from <a href="https://dafont.com">dafont.com</a> by <a href="https://www.dafont.com/darrell-flood.d4895">Darrell Flood</a></p>
+      <p>source code for this client:</p><a href="https://github.com/nwylynko/connect420">https://github.com/nwylynko/connect420</a>
+      <p>source code for the server:</p><a href="https://github.com/nwylynko/connect420-server">https://github.com/nwylynko/connect420-server</a>
+    </>
+  )
 }
 
 function joinLobby() {
