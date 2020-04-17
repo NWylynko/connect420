@@ -38,7 +38,7 @@ export function MenuScreen() {
         <LeaderBoard />
         <button className={styles.button} onClick={updateTheme}>Change to {theme === 'light' ? 'dark' : 'light'} mode</button>
         <Link className={styles.button} to="/credits" >Credits</Link>
-        
+
         <p>Client: {version} {!loading && !error ? `|| Server: ${data.version}` : null}</p>
       </div>
     </div>
@@ -57,11 +57,13 @@ function LeaderBoard() {
           <div style={{ display: 'inline-flex', justifyContent: 'center' }}>
 
             <table style={{ width: "50%", padding: 25, border: '3px solid var(--text)', borderRadius: '4vmin' }}>
-              <tr>
-                <th>Name</th>
-                <th>Score</th>
-              </tr>
-              {data.map(({ name, score }) => <tr><td>{name}</td><td>{score}</td></tr>)}
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Score</th>
+                </tr>
+              </thead>
+              {data.map(({ id, name, score }) => <tbody key={id} ><tr><td>{name}</td><td>{score}</td></tr></tbody>)}
             </table>
           </div>
       }
