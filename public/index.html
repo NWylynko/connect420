@@ -4,14 +4,13 @@
 <head>
   <meta charset="utf-8" />
 
-
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="A retro themed online multiplayer connect 4 clone" />
 
   <link rel="icon" id="favicon" href="%PUBLIC_URL%/light-themed/favicon.ico" />
   <link rel="apple-touch-icon" id="apple-icon" href="%PUBLIC_URL%/light-themed/images/icons/icon-192x192.png" />
-  <link rel="manifest" id="manifest" href="%PUBLIC_URL%/light-themed/manifest.json" />
+  <link rel="manifest" id="manifest" href="%PUBLIC_URL%/light-manifest.json" />
 
   <script>
     // adapted from https://stackoverflow.com/questions/57754710/dark-light-mode-how-to-switch-manifest-and-favicon
@@ -34,7 +33,7 @@
     window.setTheme = () => {
       favicon.href = `%PUBLIC_URL%/${getTheme()}-themed/favicon.ico`;
       appleIcon.href = `%PUBLIC_URL%/${getTheme()}-themed/images/icons/icon-192x192.png`;
-      manifest.href = `%PUBLIC_URL%/${getTheme()}-themed/manifest.json`;
+      manifest.href = `%PUBLIC_URL%/${getTheme()}-manifest.json`;
     }
     
     window.setTheme()
