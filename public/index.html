@@ -5,9 +5,9 @@
   <meta charset="utf-8" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
   <meta name="description" content="A retro themed online multiplayer connect 4 clone" />
 
+  <meta name="theme-color" id="theme-color" content="#3d3d3d" />
   <link rel="icon" id="favicon" href="%PUBLIC_URL%/light-themed/favicon.ico" />
   <link rel="apple-touch-icon" id="apple-icon" href="%PUBLIC_URL%/light-themed/images/icons/icon-192x192.png" />
   <link rel="manifest" id="manifest" href="%PUBLIC_URL%/light-manifest.json" />
@@ -18,6 +18,7 @@
     const favicon = document.getElementById('favicon');
     const appleIcon = document.getElementById('apple-icon');
     const manifest = document.getElementById('manifest');
+    const themeColor = document.getElementById('theme-color');
 
     function getTheme() {
 
@@ -31,12 +32,23 @@
     }
 
     window.setTheme = () => {
-      favicon.href = `%PUBLIC_URL%/${getTheme()}-themed/favicon.ico`;
-      appleIcon.href = `%PUBLIC_URL%/${getTheme()}-themed/images/icons/icon-192x192.png`;
-      manifest.href = `%PUBLIC_URL%/${getTheme()}-manifest.json`;
+
+      let newTheme = getTheme()
+
+      favicon.href = `%PUBLIC_URL%/${newTheme}-themed/favicon.ico`;
+      appleIcon.href = `%PUBLIC_URL%/${newTheme}-themed/images/icons/icon-192x192.png`;
+      manifest.href = `%PUBLIC_URL%/${newTheme}-manifest.json`;
+
+      if (newTheme === 'dark') {
+        themeColor.setAttribute('content', '#e8e9eb')
+        document.body.style.backgroundColor = '#121113'
+      } else {
+        themeColor.setAttribute('content', '#3d3d3d')
+        document.body.style.backgroundColor = '#f2f3f5'
+      }
     }
-    
-    window.setTheme()
+
+    window.onload = window.setTheme;
   </script>
 
   <title>Connect 420</title>
