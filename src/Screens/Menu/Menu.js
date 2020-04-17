@@ -28,11 +28,11 @@ export function MenuScreen() {
     <div className={styles.container}>
       <h1>Connect 420</h1>
       <div className={styles.menu}>
-        <input className={styles.button} value={name} onChange={e => setName(e.target.value)} type="text" name="name" placeholder="Your Name" />
+        <input className={styles.button} value={name} onChange={e => setName(e.target.value)} type="text" name="name" placeholder="Your Name" maxLength="16" />
         <Link className={styles.button} to="/findingAGame" >Find a game</Link>
         <Link className={styles.button} to={"/" + generateRandomRoom()}>Create a private game</Link>
         <div style={{ display: 'inline-grid', gridTemplateColumns: '50% 50%' }}>
-          <input className={styles.button} value={room} onChange={e => setRoom(e.target.value)} type="text" name="roomID" placeholder="Room" />
+          <input className={styles.button} value={room} onChange={e => setRoom(e.target.value)} type="text" name="roomID" placeholder="Room" maxLength="12" />
           <Link className={styles.button} to={"/" + room}>Join a private game</Link>
         </div>
         <LeaderBoard />
