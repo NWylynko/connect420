@@ -1,13 +1,26 @@
 import React, { useContext } from 'react';
 import { StoreContext } from './context';
 
-export default function Themer({ children }) {
+interface theme extends React.CSSProperties {
+  '--text': string, 
+  '--background': string,
+  '--playerColor'?: string
+}
+
+interface themes {
+  [index: string]: theme,
+  light: theme,
+  dark: theme
+}
+
+
+export default function Themer({ children } : { children: React.ReactNode }) {
 
   const { theme, info } = useContext(StoreContext)
 
-  function colors() {
+  function colors(): React.CSSProperties {
 
-    let themes = {
+    let themes: themes = {
       light: {
         '--text': '#3d3d3d',
         '--background': '#f2f3f5',
@@ -18,7 +31,7 @@ export default function Themer({ children }) {
       },
     }
   
-    let style = themes[theme]
+    let style: theme = themes[theme]
   
     if (info.type) style['--playerColor'] = `var(--${info.type})` // info.type either player1, player2, viewer or undefined (shouldnt be an issues, will only be undefined at menu screen)
   

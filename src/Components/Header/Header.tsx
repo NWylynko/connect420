@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-export default function Header({ subText, roomID }) {
+export default function Header({ subText, roomID } : { subText: string[], roomID: string }) {
   return (
     <>
       <Link to="/" style={{ textDecoration: 'none' }}>

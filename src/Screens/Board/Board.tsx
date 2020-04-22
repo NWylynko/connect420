@@ -2,27 +2,27 @@ import React, { useState, useEffect, useContext } from 'react';
 import styles from './Board.module.css'
 import io from "socket.io-client";
 import statusDefs from '../../status';
-import Header from '../../Components/Header'
+import Header from '../../Components/Header/index'
 import { useParams, Redirect } from "react-router-dom";
 import { StoreContext } from '../../context';
 import { server } from '../../config';
 
-let socket;
+let socket: SocketIOClient.Socket;
 
 export default function App() {
-  const [board, setBoard] = useState()
-  const [status, setStatus] = useState(10);
-  const [connected, setConnected] = useState(false)
-  const [redirect, setRedirect] = useState()
+  const [board, setBoard] = useState<number[][]>()
+  const [status, setStatus] = useState<number>(10);
+  const [connected, setConnected] = useState<boolean>(false)
+  const [redirect, setRedirect] = useState<string>()
 
   let { setInfo, name } = useContext(StoreContext);
-  let { room } = useParams();
+  let { room } = useParams<{ room: string}>();
 
   useEffect(() => {
     if (room) {
 
       if (process.env.NODE_ENV === 'development') {
-        socket = io('http://localhost:3001', { transports: ['websocket'] })
+        socket = io('http://192.168.0.109:3001', { transports: ['websocket'] })
       } else {
         socket = io(server, { transports: ['websocket'] });
       }
@@ -33,7 +33,7 @@ export default function App() {
       socket.on("status", setStatus);
       socket.on("board", setBoard);
       socket.on("info", setInfo);
-      socket.on("setRoom", room => setRedirect("/" + room))
+      socket.on("setRoom", (room: string) => setRedirect("/" + room))
 
     }
 
@@ -72,7 +72,7 @@ export default function App() {
   );
 }
 
-function GameBoard({ board, status, room }) {
+function GameBoard({ board, status, room } : { board: number[][], status: number, room: string}) {
   return (
     <>
     <Header subText={[statusDefs[status]]} roomID={room} />
@@ -94,7 +94,7 @@ function GameBoard({ board, status, room }) {
   )
 }
 
-function Item({ value, y, status }) {
+function Item({ value, y, status } : {value : number, y: number, status: number}) {
   if (value === 0) {
     return <div onClick={() => addCoin(y, status)} ><div className={styles.coin} /></div>
   } else if (value === 1) {
@@ -106,7 +106,7 @@ function Item({ value, y, status }) {
   }
 }
 
-function addCoin(y, status) {
+function addCoin(y: number, status: number) {
   if (status === 1) {
     socket.emit("addCoin", { y })
   }

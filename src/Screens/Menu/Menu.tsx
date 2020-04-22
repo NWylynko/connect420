@@ -6,6 +6,10 @@ import { version } from '../../../package.json'
 import { server } from '../../config';
 import useFetch from '../../hooks/useFetch'
 
+interface IversionFetch {
+  version: String
+}
+
 export function MenuScreen() {
   const [room, setRoom] = useState("");
 
@@ -18,7 +22,7 @@ export function MenuScreen() {
     setTheme(oldTheme => {
       let newTheme = oldTheme === 'light' ? 'dark' : 'light';
       localStorage.setItem("theme", newTheme);
-      window.setTheme()
+      // window.setTheme()
       return newTheme;
     })
 
@@ -28,11 +32,11 @@ export function MenuScreen() {
     <div className={styles.container}>
       <h1>Connect 420</h1>
       <div className={styles.menu}>
-        <input className={styles.button} value={name} onChange={e => setName(e.target.value)} type="text" name="name" placeholder="Your Name" maxLength="16" />
+        <input className={styles.button} value={name} onChange={e => setName(e.target.value)} type="text" name="name" placeholder="Your Name" maxLength={16} />
         <Link className={styles.button} to="/findingAGame" >Find a game</Link>
         <Link className={styles.button} to={"/" + generateRandomRoom()}>Create a private game</Link>
         <div style={{ display: 'inline-grid', gridTemplateColumns: '50% 50%' }}>
-          <input className={styles.button} value={room} onChange={e => setRoom(e.target.value)} type="text" name="roomID" placeholder="Room" maxLength="12" />
+          <input className={styles.button} value={room} onChange={e => setRoom(e.target.value)} type="text" name="roomID" placeholder="Room" maxLength={12} />
           <Link className={styles.button} to={"/" + room}>Join a private game</Link>
         </div>
         <LeaderBoard />
@@ -63,7 +67,7 @@ function LeaderBoard() {
                   <th>Score</th>
                 </tr>
               </thead>
-              {data.map(({ id, name, score }) => <tbody key={id} ><tr><td>{name}</td><td>{score}</td></tr></tbody>)}
+              {data.map(({ id, name, score } : { id: number, name: string, score: string}) => <tbody key={id} ><tr><td>{name}</td><td>{score}</td></tr></tbody>)}
             </table>
           </div>
       }
