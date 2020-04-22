@@ -4,11 +4,8 @@ import { Link } from "react-router-dom";
 import { StoreContext } from '../../context';
 import { version } from '../../../package.json'
 import { server } from '../../config';
-import useFetch from '../../hooks/useFetch'
-
-interface IversionFetch {
-  version: String
-}
+import useFetch from '../../hooks/useFetch';
+import Title from '../../Components/Title';
 
 export function MenuScreen() {
   const [room, setRoom] = useState("");
@@ -30,8 +27,10 @@ export function MenuScreen() {
 
   return (
     <div className={styles.container}>
-      <h1>Connect 420</h1>
+
       <div className={styles.menu}>
+        <Title />
+
         <input className={styles.button} value={name} onChange={e => setName(e.target.value)} type="text" name="name" placeholder="Your Name" maxLength={16} />
         <Link className={styles.button} to="/findingAGame" >Find a game</Link>
         <Link className={styles.button} to={"/" + generateRandomRoom()}>Create a private game</Link>
@@ -67,7 +66,7 @@ function LeaderBoard() {
                   <th>Score</th>
                 </tr>
               </thead>
-              {data.map(({ id, name, score } : { id: number, name: string, score: string}) => <tbody key={id} ><tr><td>{name}</td><td>{score}</td></tr></tbody>)}
+              {data.map(({ id, name, score }: { id: number, name: string, score: string }) => <tbody key={id} ><tr><td>{name}</td><td>{score}</td></tr></tbody>)}
             </table>
           </div>
       }

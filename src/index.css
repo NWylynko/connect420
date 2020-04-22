@@ -40,23 +40,10 @@ code {
   src: local('Retronoid'), url(./fonts/Retronoid.ttf);
 }
 
-h1 {
-  font-size: 15vmin;
-  font-family: 'Retronoid';
-  letter-spacing: 1vmin;
-  color: var(--text);
-  text-shadow: 0.5vmin 1vmin var(--player2), 1vmin 2vmin var(--player1);
-  margin: 10px;
-  margin-top: 0px;
-  text-align: center;
-}
-
 h2 {
-  /* font-family: 'Retronoid'; */
-  /* letter-spacing: 0.5vmin; */
   color: var(--text);
-  text-shadow: 0.25vmin 0.5vmin var(--player2), 0.5vmin 1vmin var(--player1);
-  font-size: 5vmin;
+  text-shadow: 0.25vw 0.5vw var(--player2), 0.5vw 1vw var(--player1);
+  font-size: 5vw;
   margin: 15px;
   margin-top: 0px;
   text-align: center;
@@ -74,25 +61,12 @@ p {
   text-align: center;
 }
 
-@media (max-width: 900px) { 
-  /* tablet */
-
-  h1 {
-    font-size: 13vmin;
-  }
-
-}
-
 @media (max-width: 600px) {
 
   /* mobile */
 
-  h1 {
-    font-size: 12vmin;
-  }
-
   h2 {
-    font-size: 7vmin;
+    font-size: 7vw;
     margin: 0px;
   }
   

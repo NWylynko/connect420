@@ -33,7 +33,7 @@ export default function Themer({ children } : { children: React.ReactNode }) {
   
     let style: theme = themes[theme]
   
-    if (info.type) style['--playerColor'] = `var(--${info.type})` // info.type either player1, player2, viewer or undefined (shouldnt be an issues, will only be undefined at menu screen)
+    if (info.type) style['--playerColor'] = `var(--${info.type})` 
   
     return style
   
