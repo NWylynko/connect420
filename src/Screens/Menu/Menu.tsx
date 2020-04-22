@@ -6,6 +6,7 @@ import { version } from '../../../package.json'
 import { server } from '../../config';
 import useFetch from '../../hooks/useFetch';
 import Title from '../../Components/Title';
+import { LeaderBoard } from './LeaderBoard/LeaderBoard';
 
 export function MenuScreen() {
   const [room, setRoom] = useState("");
@@ -27,52 +28,27 @@ export function MenuScreen() {
 
   return (
     <div className={styles.container}>
+      <div className={styles.page}>
+        <div style={{ width: '20vw' }}/>
+        <div className={styles.menu}>
+          <Title />
 
-      <div className={styles.menu}>
-        <Title />
+          <input className={styles.button} value={name} onChange={e => setName(e.target.value)} type="text" name="name" placeholder="Your Name" maxLength={16} />
+          <Link className={styles.button} to="/findingAGame" >Find a match</Link>
+          <Link className={styles.button} to={"/" + generateRandomRoom()}>Create a private room</Link>
+          <div style={{ display: 'inline-grid', gridTemplateColumns: '50% 50%' }}>
+            <input className={styles.button} value={room} onChange={e => setRoom(e.target.value)} type="text" name="roomID" placeholder="Room" maxLength={12} />
+            <Link className={styles.button} to={"/" + room}>Join private room</Link>
+          </div>
+          <button className={styles.button} onClick={updateTheme}>Change to {theme === 'light' ? 'dark mode 🌙' : 'light mode 🌞'}</button>
+          <Link className={styles.button} to="/credits" >Credits</Link>
 
-        <input className={styles.button} value={name} onChange={e => setName(e.target.value)} type="text" name="name" placeholder="Your Name" maxLength={16} />
-        <Link className={styles.button} to="/findingAGame" >Find a match</Link>
-        <Link className={styles.button} to={"/" + generateRandomRoom()}>Create a private room</Link>
-        <div style={{ display: 'inline-grid', gridTemplateColumns: '50% 50%' }}>
-          <input className={styles.button} value={room} onChange={e => setRoom(e.target.value)} type="text" name="roomID" placeholder="Room" maxLength={12} />
-          <Link className={styles.button} to={"/" + room}>Join private room</Link>
+          <p>Client: {version} {!loading && !error ? `|| Server: ${data.version}` : null}</p>
         </div>
         <LeaderBoard />
-        <button className={styles.button} onClick={updateTheme}>Change to {theme === 'light' ? 'dark mode 🌙' : 'light mode 🌞'}</button>
-        <Link className={styles.button} to="/credits" >Credits</Link>
-
-        <p>Client: {version} {!loading && !error ? `|| Server: ${data.version}` : null}</p>
       </div>
     </div>
   );
-}
-
-function LeaderBoard() {
-
-  const { loading, error, data } = useFetch(server + "/c420/leaderboard")
-
-  return (
-    <>
-      <h2 style={{ marginTop: 15 }}>LeaderBoard</h2>
-      {error ? 'error loading leaderboard :(' :
-        loading ? 'Loading...' :
-          <div style={{ display: 'inline-flex', justifyContent: 'center' }}>
-
-            <table style={{ width: "50%", padding: 25, border: '3px solid var(--text)', borderRadius: '10px', transition: 'border-color 250ms ease-in' }}>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Score</th>
-                </tr>
-              </thead>
-              {data.map(({ id, name, score }: { id: number, name: string, score: string }) => <tbody key={id} ><tr><td>{name}</td><td>{score}</td></tr></tbody>)}
-            </table>
-          </div>
-      }
-
-    </>
-  )
 }
 
 function generateRandomRoom() {

@@ -1,0 +1,33 @@
+.container {
+  width: 20vw;
+  padding-top: 15vh;
+}
+
+@media (max-width: 1500px) {
+
+  /* mobile / tablet */
+
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+  
+}
+
+.tableContainer {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.table {
+  padding: 25px; 
+  padding-left: 50px;
+  padding-right: 50px;
+  border: 3px solid var(--text); 
+  border-radius: 10px; 
+  transition: border-color 250ms ease-in;
+}
+
+.padding {
+  padding: 5px;
+}

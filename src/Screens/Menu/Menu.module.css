@@ -3,6 +3,22 @@
   text-align: center; 
 }
 
+.page {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+@media (max-width: 1500px) {
+
+  /* mobile / tablet */
+
+  .page {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+}
+
 .menu {
   display: inline-grid;
   max-width: 900px;
