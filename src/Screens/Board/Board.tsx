@@ -47,18 +47,6 @@ export default function App() {
     console.log(connected ? "connected" : "disconnected")
   }, [connected])
 
-  useEffect(() => {
-    if (board) {
-      window.onbeforeunload = function () {
-        return "If you leave you cant keep playing on this board!";
-      };
-    }
-
-    return(() => {
-      window.onbeforeunload = null;
-    })
-  }, [board])
-
   return (
     <>
     {redirect ? <Redirect to={redirect} /> : null}
