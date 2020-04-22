@@ -20,6 +20,7 @@ body {
 
   background-color: var(--background);
   color: var(--text);
+  transition: background-color 250ms ease-in, color 250ms ease-in;
 
   justify-content: center;
   
@@ -47,6 +48,7 @@ h2 {
   margin: 15px;
   margin-top: 0px;
   text-align: center;
+  transition: color 250ms ease-in;
 }
 
 h3 {

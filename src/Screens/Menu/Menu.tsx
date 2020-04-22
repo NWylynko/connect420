@@ -32,14 +32,14 @@ export function MenuScreen() {
         <Title />
 
         <input className={styles.button} value={name} onChange={e => setName(e.target.value)} type="text" name="name" placeholder="Your Name" maxLength={16} />
-        <Link className={styles.button} to="/findingAGame" >Find a game</Link>
-        <Link className={styles.button} to={"/" + generateRandomRoom()}>Create a private game</Link>
+        <Link className={styles.button} to="/findingAGame" >Find a match</Link>
+        <Link className={styles.button} to={"/" + generateRandomRoom()}>Create a private room</Link>
         <div style={{ display: 'inline-grid', gridTemplateColumns: '50% 50%' }}>
           <input className={styles.button} value={room} onChange={e => setRoom(e.target.value)} type="text" name="roomID" placeholder="Room" maxLength={12} />
-          <Link className={styles.button} to={"/" + room}>Join a private game</Link>
+          <Link className={styles.button} to={"/" + room}>Join private room</Link>
         </div>
         <LeaderBoard />
-        <button className={styles.button} onClick={updateTheme}>Change to {theme === 'light' ? 'dark' : 'light'} mode</button>
+        <button className={styles.button} onClick={updateTheme}>Change to {theme === 'light' ? 'dark mode 🌙' : 'light mode 🌞'}</button>
         <Link className={styles.button} to="/credits" >Credits</Link>
 
         <p>Client: {version} {!loading && !error ? `|| Server: ${data.version}` : null}</p>
@@ -59,7 +59,7 @@ function LeaderBoard() {
         loading ? 'Loading...' :
           <div style={{ display: 'inline-flex', justifyContent: 'center' }}>
 
-            <table style={{ width: "50%", padding: 25, border: '3px solid var(--text)', borderRadius: '10px' }}>
+            <table style={{ width: "50%", padding: 25, border: '3px solid var(--text)', borderRadius: '10px', transition: 'border-color 250ms ease-in' }}>
               <thead>
                 <tr>
                   <th>Name</th>

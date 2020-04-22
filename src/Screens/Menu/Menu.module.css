@@ -20,4 +20,5 @@
   text-align: center;
   color: var(--background);
   text-decoration: none;
+  transition: background-color 250ms ease-in, color 250ms ease-in;
 }
