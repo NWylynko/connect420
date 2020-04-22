@@ -59,7 +59,7 @@ function LeaderBoard() {
         loading ? 'Loading...' :
           <div style={{ display: 'inline-flex', justifyContent: 'center' }}>
 
-            <table style={{ width: "50%", padding: 25, border: '3px solid var(--text)', borderRadius: '4vmin' }}>
+            <table style={{ width: "50%", padding: 25, border: '3px solid var(--text)', borderRadius: '10px' }}>
               <thead>
                 <tr>
                   <th>Name</th>
