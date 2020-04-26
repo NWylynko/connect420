@@ -8,7 +8,9 @@ interface Istore {
   info: Info,
   setInfo: React.Dispatch<React.SetStateAction<Info>>,
   name: string,
-  setName: React.Dispatch<React.SetStateAction<string>>
+  setName: React.Dispatch<React.SetStateAction<string>>,
+  connected: boolean,
+  setConnected: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 interface Info {
@@ -19,13 +21,15 @@ export default ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<string>(getTheme())
   const [info, setInfo] = useState<Info>({})
   const [name, setName] = useState<string>("")
+  const [connected, setConnected] = useState<boolean>(false)
 
   const store: Istore = {
     theme,
     setTheme,
     info,
     setInfo,
-    name, setName
+    name, setName,
+    connected, setConnected
   };
 
   return (

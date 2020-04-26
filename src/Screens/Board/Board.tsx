@@ -12,17 +12,16 @@ let socket: SocketIOClient.Socket;
 export default function App() {
   const [board, setBoard] = useState<number[][]>()
   const [status, setStatus] = useState<number>(10);
-  const [connected, setConnected] = useState<boolean>(false)
   const [redirect, setRedirect] = useState<string>()
 
-  let { setInfo, name } = useContext(StoreContext);
+  let { setInfo, name, connected, setConnected } = useContext(StoreContext);
   let { room } = useParams<{ room: string}>();
 
   useEffect(() => {
     if (room) {
 
       if (process.env.NODE_ENV === 'development') {
-        socket = io('http://192.168.0.109:3001', { transports: ['websocket'] })
+        socket = io('http://localhost:3001', { transports: ['websocket'] })
       } else {
         socket = io(server, { transports: ['websocket'] });
       }
@@ -41,7 +40,7 @@ export default function App() {
       socket.disconnect();
     })
 
-  }, [room, setInfo, name])
+  }, [room, setInfo, name, setConnected])
 
   useEffect(() => {
     console.log(connected ? "connected" : "disconnected")
@@ -60,7 +59,7 @@ export default function App() {
   );
 }
 
-function GameBoard({ board, status, room } : { board: number[][], status: number, room: string}) {
+function GameBoard({ board, status, room } : { board: number[][], status: number, room: string }) {
   return (
     <>
     <Header subText={[statusDefs[status]]} roomID={room} />
