@@ -14,7 +14,7 @@ export default function Credits() {
         <p>Title font <a href="https://www.dafont.com/retronoid.font">Retronoid</a> from <a href="https://dafont.com">dafont.com</a> by <a href="https://www.dafont.com/darrell-flood.d4895">Darrell Flood</a></p>
         <p>source code for this client:</p><a href="https://github.com/nwylynko/connect420">https://github.com/nwylynko/connect420</a>
         <p>source code for the server:</p><a href="https://github.com/nwylynko/connect420-server">https://github.com/nwylynko/connect420-server</a>
-        <p>Technologies used: React, React Router, Socketio, Nodejs, Expressjs, Pm2, Nginx, Redis</p>
+        <p>Technologies used: React, React Router, Socketio, Nodejs, TypeScript, Expressjs, Docker, Nginx, Redis</p>
         <Link className={MenuStyles.button} to="/" >Go Back</Link>
       </div>
     </div>
