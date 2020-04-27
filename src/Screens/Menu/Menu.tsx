@@ -3,7 +3,7 @@ import styles from './Menu.module.css'
 import { Link } from "react-router-dom";
 import { StoreContext } from '../../context';
 import { version } from '../../../package.json'
-import { server } from '../../config';
+import { url } from '../../config';
 import useFetch from '../../hooks/useFetch';
 import Title from '../../Components/Title';
 import { LeaderBoard } from './LeaderBoard/LeaderBoard';
@@ -13,7 +13,7 @@ export function MenuScreen() {
 
   const { theme, setTheme, name, setName } = useContext(StoreContext);
 
-  const { loading, error, data } = useFetch(server + "/c420/version")
+  const { loading, error, data } = useFetch(url + "/version")
 
   function updateTheme() {
 
@@ -43,7 +43,13 @@ export function MenuScreen() {
           <button className={styles.button} onClick={updateTheme}>Change to {theme === 'light' ? 'dark mode 🌙' : 'light mode 🌞'}</button>
           <Link className={styles.button} to="/credits" >Credits</Link>
 
-          <p>Client: {version} {!loading && !error ? `|| Server: ${data.version}` : null}</p>
+          <p>
+            Client: 
+              {` ${version}`} 
+              {process.env.NODE_ENV === 'development' && ' development '} 
+              {!loading && !error ? `|| Server: ${data.version}` : null} 
+              {!loading && !error && process.env.NODE_ENV === 'development' ? ' development ' : null} 
+          </p> 
         </div>
         <LeaderBoard />
       </div>

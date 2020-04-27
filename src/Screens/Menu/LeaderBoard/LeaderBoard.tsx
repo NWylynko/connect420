@@ -1,11 +1,11 @@
 import React from 'react';
-import { server } from '../../../config';
+import { url } from '../../../config';
 import useFetch from '../../../hooks/useFetch';
 import styles from './LeaderBoard.module.css';
 
 export function LeaderBoard() {
 
-  const { loading, error, data } = useFetch(server + "/c420/leaderboard");
+  const { loading, error, data } = useFetch(url + "/leaderboard");
 
   return (<div className={styles.container}>
 

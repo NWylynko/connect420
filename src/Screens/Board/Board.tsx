@@ -20,11 +20,7 @@ export default function App() {
   useEffect(() => {
     if (room) {
 
-      if (process.env.NODE_ENV === 'development') {
-        socket = io('http://localhost:3001', { transports: ['websocket'] })
-      } else {
-        socket = io(server, { transports: ['websocket'] });
-      }
+      socket = io(server, { transports: ['websocket'] });
 
       socket.on("connect", () => { setConnected(true); setStatus(11); socket.emit("room", room); if (name) socket.emit("name", name); console.log(socket.id) })
       socket.on("disconnect", () => { setConnected(false); setStatus(12) })
