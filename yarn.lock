@@ -1227,7 +1227,7 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@nwylynko/how-long-ago@^1.0.1":
+"@nwylynko/how-long-ago@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@nwylynko/how-long-ago/-/how-long-ago-1.0.4.tgz#2e55079a5b4336c4c749621c525c91e425df4397"
   integrity sha512-N+ts6T7WkfN6rCzBKae4I8eavFgUp+k837OgTSpJAKmZOWK3UCO6LLQWak2j/vspvvwh6YXsw+fRzrRcCMDu8w==

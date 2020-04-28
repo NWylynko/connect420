@@ -57,7 +57,7 @@ export default function Chat({ socket, room }: { socket: SocketIOClient.Socket, 
   );
 }
 
-function Message({ message, timestamp, from }: { message: string, timestamp: number, from: "player1" | "player2" | "viewer"}) {
+function Message({ message, timestamp, from }: message) {
   return (
     <div className={[styles.message_container, styles[from]].join(' ')} key={timestamp}>
       <p className={styles.message}>{message}</p>
