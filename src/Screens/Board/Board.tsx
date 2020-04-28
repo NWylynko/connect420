@@ -12,7 +12,7 @@ let socket: SocketIOClient.Socket;
 
 export default function App() {
   const [board, setBoard] = useState<number[][]>()
-  // const [highlights, setHighlights] = useState<number[][]>()
+  const [highlights, setHighlights] = useState<number[][]>([[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]])
   const [status, setStatus] = useState<number>(10);
   const [redirect, setRedirect] = useState<string>()
 
@@ -31,7 +31,7 @@ export default function App() {
       socket.on("board", setBoard);
       socket.on("info", setInfo);
       socket.on("setRoom", (room: string) => setRedirect("/" + room))
-      // socket.on("highlights", setHighlights)
+      socket.on("highlights", setHighlights)
 
     }
 
@@ -50,30 +50,29 @@ export default function App() {
       {redirect ? <Redirect to={redirect} /> : null}
       {
         board ?
-          // <GameBoard board={board} status={status} room={room} highlights={highlights} /> :
-          <GameBoard board={board} status={status} room={room} /> :
-          <Header subText={['Send this link to your friend for them to join:', `https://connect420.web.app/${room}`]} roomID={room} />
+          <GameBoard board={board} status={status} room={room} highlights={highlights} /> :
+          <Header subText={['Send this link to your friend for them to join:', `${server}/${room}`]} roomID={room} />
       }
       <Chat socket={socket} room={room} />
     </>
   );
 }
 
-// function GameBoard({ board, status, room, highlights }: { board: number[][], status: number, room: string, highlights: number[][] }) {
-function GameBoard({ board, status, room }: { board: number[][], status: number, room: string }) {
+function GameBoard({ board, status, room, highlights }: { board: number[][], status: number, room: string, highlights: number[][] }) {
   return (
     <>
       <Header subText={[statusDefs[status]]} roomID={room} />
       <div style={{ display: 'inline-flex', width: '100%', justifyContent: 'center', paddingBottom: 15, marginBottom: 15 }}>
         <div className={styles.container} >
 
-          {board.map(
-            (col, x) => col.map(
-              (row, y) => (
-                <Item key={"board" + x + y} value={row} y={y} status={status} />
+          {
+            board.map(
+              (col, x) => col.map(
+                (row, y) => (
+                  <Item key={"board" + x + y} value={row} y={y} status={status} highlighted={highlights[x][y] === 1 ? true : false} />
+                )
               )
             )
-          )
           }
 
         </div>
@@ -82,13 +81,13 @@ function GameBoard({ board, status, room }: { board: number[][], status: number,
   )
 }
 
-function Item({ value, y, status }: { value: number, y: number, status: number }) {
+function Item({ value, y, status, highlighted }: { value: number, y: number, status: number, highlighted: boolean }) {
   if (value === 0) {
     return <div onClick={() => addCoin(y, status)} ><div className={styles.coin} /></div>
   } else if (value === 1) {
-    return <div onClick={() => addCoin(y, status)} ><div className={[styles.coin, styles.red].join(" ")} /></div>
+    return <div onClick={() => addCoin(y, status)} ><div className={[styles.coin, styles.red].join(" ")} style={highlighted ? { boxShadow: '0px 0px 2vmin 2vmin var(--player1)' } : {}} /></div>
   } else if (value === 2) {
-    return <div onClick={() => addCoin(y, status)} ><div className={[styles.coin, styles.yellow].join(" ")} /></div>
+    return <div onClick={() => addCoin(y, status)} ><div className={[styles.coin, styles.yellow].join(" ")} style={highlighted ? { boxShadow: '0px 0px 2vmin 2vmin var(--player2)' } : {}} /></div>
   } else {
     return null
   }
