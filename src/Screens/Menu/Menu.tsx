@@ -46,8 +46,8 @@ export function MenuScreen() {
           <p>
             Client: 
               {` ${version}`} 
-              {process.env.NODE_ENV === 'development' && ' development '} 
-              {!loading && !error ? `|| Server: ${data.version}` : null} 
+              {process.env.NODE_ENV === 'development' && ' development'} 
+              {!loading && !error ? ` || Server: ${data.version}` : null} 
               {!loading && !error && process.env.NODE_ENV === 'development' ? ' development ' : null} 
           </p> 
         </div>
