@@ -53,7 +53,7 @@ export default function App() {
           <GameBoard board={board} status={status} room={room} highlights={highlights} /> :
           <Header subText={['Send this link to your friend for them to join:', `${server}/${room}`]} roomID={room} />
       }
-      <Chat socket={socket} room={room} />
+      
     </>
   );
 }
@@ -62,8 +62,9 @@ function GameBoard({ board, status, room, highlights }: { board: number[][], sta
   return (
     <>
       <Header subText={[statusDefs[status]]} roomID={room} />
-      <div style={{ display: 'inline-flex', width: '100%', justifyContent: 'center', paddingBottom: 15, marginBottom: 15 }}>
-        <div className={styles.container} >
+      <div className={styles.container}>
+        <div />
+        <div className={styles.board} >
 
           {
             board.map(
@@ -74,8 +75,9 @@ function GameBoard({ board, status, room, highlights }: { board: number[][], sta
               )
             )
           }
-
+        
         </div>
+        <Chat socket={socket} room={room} />
       </div>
     </>
   )

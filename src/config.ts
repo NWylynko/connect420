@@ -2,7 +2,7 @@ export let server: string;
 export let api: string;
 
 if (process.env.NODE_ENV === 'development') {
-  server = "http://localhost:3001";
+  server = "http://192.168.0.109:3001";
   api = "";
 } else {
   server = "https://potato.wylynko.com";

@@ -38,3 +38,17 @@
   text-decoration: none;
   transition: background-color 250ms ease-in, color 250ms ease-in;
 }
+
+/* .button {
+  padding: 10px;
+  margin: 20px;
+  border-radius: 5px;
+  background-color: var(--background);
+  box-shadow: 4px 8px var(--player2), 8px 16px var(--player1);
+  font-size: 3vmin;
+  border: 5px solid var(--text);
+  text-align: center;
+  color: var(--text);
+  text-decoration: none;
+  transition: background-color 250ms ease-in, color 250ms ease-in;
+} */
