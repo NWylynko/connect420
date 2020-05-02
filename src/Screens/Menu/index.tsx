@@ -1,2 +1,2 @@
 import { MenuScreen } from './Menu';
-export default MenuScreen
+export default MenuScreen;
