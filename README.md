@@ -1,3 +1,10 @@
+
+### environment variables (.env)
+
+- REACT_APP_SERVER - default 'http://localhost:3001' - tells the client where the server is located at
+- REACT_APP_SERVER_API - default undefined - set to /api or /c420 if the server is behind something like nginx
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

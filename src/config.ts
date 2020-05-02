@@ -1,12 +1,3 @@
-export let server: string;
-export let api: string;
-
-if (process.env.NODE_ENV === 'development') {
-  server = "http://192.168.0.109:3001";
-  api = "";
-} else {
-  server = "https://potato.wylynko.com";
-  api = "/c420";
-}
-
+export const server: string = process.env.REACT_APP_SERVER || "http://localhost:3001";
+export const api: string = process.env.REACT_APP_SERVER_API || "";
 export const url: string = server + api;

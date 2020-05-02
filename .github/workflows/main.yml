@@ -21,14 +21,13 @@ jobs:
         node-version: '14.x'
 
     - name: Install Dependencies
-      uses: borales/actions-yarn@v2.0.0
-      with:
-        cmd: install
+      run: yarn install
 
     - name: Build Website
-      uses: borales/actions-yarn@v2.0.0
-      with:
-        cmd: build
+      run: yarn build
+      env:
+        REACT_APP_SERVER: https://potato.wylynko.com
+        REACT_APP_SERVER_API: /c420
 
     - name: Archive Production Artifact
       uses: actions/upload-artifact@master
