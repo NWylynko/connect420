@@ -23,7 +23,7 @@ export function LeaderBoard(): JSX.Element {
                 <th className={styles.padding}>Score</th>
               </tr>
             </thead>
-            {data.map(TableItem)}
+            {data.leaderboard.map(TableItem)}
           </table>
         </div>
       )}
