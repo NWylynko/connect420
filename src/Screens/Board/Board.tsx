@@ -12,15 +12,7 @@ let socket: SocketIOClient.Socket;
 
 export default function App(): JSX.Element {
   const [board, setBoard] = useState<number[][]>();
-  const [highlights, setHighlights] = useState<number[][]>([
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-  ]);
+  const [highlights, setHighlights] = useState<number[][]>([]);
   const [status, setStatus] = useState<number>(10);
   const [redirect, setRedirect] = useState<string>();
 
@@ -59,6 +51,16 @@ export default function App(): JSX.Element {
     console.log(connected ? 'connected' : 'disconnected');
   }, [connected]);
 
+  useEffect(() => {
+    if (status === 6) {
+      console.log('win');
+    }
+  }, [status]);
+
+  useEffect(() => {
+    console.log(status, statusDefs[status]);
+  }, [status]);
+
   return (
     <>
       {redirect ? <Redirect to={redirect} /> : null}
@@ -95,7 +97,7 @@ function GameBoard({
                 value={row}
                 y={y}
                 status={status}
-                highlighted={highlights[x][y] === 1 ? true : false}
+                highlighted={highlights.length ? (highlights[x][y] === 1 ? true : false) : false}
               />
             )),
           )}
