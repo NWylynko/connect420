@@ -1,0 +1,8 @@
+version: '3'
+services:
+  c420:
+    container_name: connect420
+    build: .
+    environment:
+      - REACT_APP_SERVER=http://localhost:3001
+      - REACT_APP_SERVER_API=
