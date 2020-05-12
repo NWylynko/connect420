@@ -4,6 +4,28 @@
 - REACT_APP_SERVER - default 'http://localhost:3001' - tells the client where the server is located at
 - REACT_APP_SERVER_API - default undefined - set to /api or /c420 if the server is behind something like nginx
 
+## to use environment variables
+
+- in development
+  - copy the .env.example to .env and run with yarn start
+
+- in docker
+  - define env in docker / docker-compose
+```
+version: '3'
+services:
+  c420:
+    container_name: connect420
+    image: nwylynko/connect420
+    environment:
+      - REACT_APP_SERVER=http://localhost:3002
+      - REACT_APP_SERVER_API=
+    ports:
+      - "80:3000"
+```
+
+- in github action / firebase deploy
+  - edit environment variables in the github action main.yml
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

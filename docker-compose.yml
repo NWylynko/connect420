@@ -4,5 +4,7 @@ services:
     container_name: connect420
     build: .
     environment:
-      - REACT_APP_SERVER=http://localhost:3001
+      - REACT_APP_SERVER=http://localhost:3002
       - REACT_APP_SERVER_API=
+    ports:
+      - "4000:3000"

@@ -19,7 +19,7 @@ export function MenuScreen(): JSX.Element {
     setTheme((oldTheme) => {
       const newTheme = oldTheme === 'light' ? 'dark' : 'light';
       localStorage.setItem('theme', newTheme);
-      // window.setTheme()
+      window.setTheme();
       return newTheme;
     });
   }
