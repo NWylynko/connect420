@@ -17,7 +17,7 @@ export default function Chat({ socket, room }: { socket: SocketIOClient.Socket; 
   useEffect(() => {
     if (room && socket) {
       socket.on('message', ({ message, timestamp, from }: Message) => {
-        setMessages((oldState) => oldState.concat({ message, timestamp, from }));
+        setMessages((oldState) => [{ message, timestamp, from }].concat(oldState));
       });
     }
   }, [room, socket]);
@@ -29,8 +29,10 @@ export default function Chat({ socket, room }: { socket: SocketIOClient.Socket; 
   }
 
   function sendMessage(): void {
-    socket.emit('message', { message, timestamp: Date.now() });
-    setMessage('');
+    if (message) {
+      socket.emit('message', { message, timestamp: Date.now() });
+      setMessage('');
+    }
   }
 
   if (room === 'findingAGame') {
@@ -49,6 +51,7 @@ export default function Chat({ socket, room }: { socket: SocketIOClient.Socket; 
           placeholder="Message..."
           className={MenuStyles.button}
           type="text"
+          maxLength={128}
           value={message}
           onChange={(e): void => setMessage(e.target.value)}
         />
@@ -56,7 +59,7 @@ export default function Chat({ socket, room }: { socket: SocketIOClient.Socket; 
           Send
         </button>
       </div>
-      <div className={styles.messages}>{messages.reverse().map(Message)}</div>
+      <div className={styles.messages}>{messages.map(Message)}</div>
     </div>
   );
 }

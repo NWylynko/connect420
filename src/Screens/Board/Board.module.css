@@ -10,6 +10,9 @@
 
   box-shadow: 5px 10px var(--playerColor);
 
+  max-height: 856px;
+  max-width: 912px;
+
 }
 
 @media (min-width: 900px) {
