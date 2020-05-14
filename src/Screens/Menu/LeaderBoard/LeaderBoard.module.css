@@ -1,6 +1,9 @@
 .container {
-  width: 20vw;
+  width: 200px;
+  max-width: 200px;
   padding-top: 15vh;
+  display: inline-flex;
+  flex-direction: column
 }
 
 @media (max-width: 1500px) {
@@ -15,8 +18,13 @@
 }
 
 .tableContainer {
-  display: inline-flex;
+  /* display: inline-flex; */
   justify-content: center;
+  /* width: 'fit-content' */
+  width: 200px;
+  /* width: 20vw; */
+  /* max-width: 20vw; */
+  padding-left: 2vw;
 }
 
 .table {

@@ -8,7 +8,7 @@ export function LeaderBoard(): JSX.Element {
 
   return (
     <div className={styles.container}>
-      <h2 style={{ marginTop: 15 }}>LeaderBoard</h2>
+      <h2 style={{ marginTop: 15, width: 'fit-content' }}>LeaderBoard</h2>
 
       {error ? (
         <p>error loading leaderboard :(</p>

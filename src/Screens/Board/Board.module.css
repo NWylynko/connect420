@@ -10,25 +10,25 @@
 
   box-shadow: 5px 10px var(--playerColor);
 
-  max-height: 856px;
-  max-width: 912px;
+  /* max-height: 856px; */
+  /* max-width: 912px; */
 
 }
 
 @media (min-width: 900px) {
   .board {
 
-      grid-template-columns: repeat(7, 90px);
-      grid-gap: 25px;
+      grid-template-columns: repeat(7, 80px);
+      grid-gap: 15px;
       box-shadow: 10px 20px var(--playerColor);
-      padding: 35px;
+      padding: 20px;
   }
   
 }
 
 .coin {
-  width: 10vmin;
-  height: 10vmin;
+  width: 5vmin;
+  height: 5vmin;
   border-radius: 50%;
   border: 2px dotted var(--text);
 }
@@ -54,8 +54,8 @@
 
 @media (min-width: 900px) {
   .coin {
-      width: 90px;
-      height: 90px;
+      width: 70px;
+      height: 70px;
       border: 4px dotted var(--text);
   }
 
@@ -94,7 +94,7 @@
   margin-bottom: 15px;
 }
 
-@media (max-width: 1950px) {
+@media (max-width: 1400px) {
   .container { 
     grid-template-columns: inherit; 
     grid-template-rows: auto auto auto; 

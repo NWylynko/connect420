@@ -27,7 +27,7 @@ export function MenuScreen(): JSX.Element {
   return (
     <div className={styles.container}>
       <div className={styles.page}>
-        <div style={{ width: '20vw' }} />
+        <div style={{ width: 350 }} />
         <div className={styles.menu}>
           <Title />
 
