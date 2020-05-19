@@ -1,5 +1,7 @@
 # Connect420
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1570f67a43984fbfba5bbe2abda1abdb)](https://app.codacy.com/manual/nick1014375/connect420?utm_source=github.com&utm_medium=referral&utm_content=NWylynko/connect420&utm_campaign=Badge_Grade_Dashboard)
+
 A school project to create a simple game, I choose connect 4.
 
 ### environment variables (.env)
