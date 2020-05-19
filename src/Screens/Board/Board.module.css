@@ -1,29 +1,24 @@
 .board {
   display: inline-grid;
-
   grid-template-columns: repeat(7, 10vmin);
   grid-gap: 3vmin;
-
   border: 3px solid var(--text);
   border-radius: 4vmin;
   padding: 4vmin;
-
   box-shadow: 5px 10px var(--playerColor);
 
   /* max-height: 856px; */
-  /* max-width: 912px; */
 
+  /* max-width: 912px; */
 }
 
 @media (min-width: 900px) {
   .board {
-
-      grid-template-columns: repeat(7, 80px);
-      grid-gap: 15px;
-      box-shadow: 10px 20px var(--playerColor);
-      padding: 20px;
+    grid-template-columns: repeat(7, 80px);
+    grid-gap: 15px;
+    box-shadow: 10px 20px var(--playerColor);
+    padding: 20px;
   }
-  
 }
 
 .coin {
@@ -49,55 +44,53 @@
   border-style: solid;
   box-shadow: 2px 4px var(--player2);
   animation: drop 1s linear forwards;
-  
 }
 
 @media (min-width: 900px) {
   .coin {
-      width: 70px;
-      height: 70px;
-      border: 4px dotted var(--text);
+    width: 70px;
+    height: 70px;
+    border: 4px dotted var(--text);
   }
 
   .coin:hover {
-      box-shadow: 4px 8px var(--playerColor);
+    box-shadow: 4px 8px var(--playerColor);
   }
 
   .red {
-      border-style: solid;
-      box-shadow: 4px 8px var(--player1);
+    border-style: solid;
+    box-shadow: 4px 8px var(--player1);
   }
-  
+
   .yellow {
-      border-style: solid;
-      box-shadow: 4px 8px var(--player2);
+    border-style: solid;
+    box-shadow: 4px 8px var(--player2);
   }
-  
 }
 
 @keyframes drop {
   from {
     transform: translateY(-100vh);
   }
-  to { 
-    transform: translateY(0px);
+
+  to {
+    transform: translateY(0);
   }
 }
 
-.container { 
-  display: inline-grid; 
-  grid-template-columns: 25% auto 25%; 
-  grid-gap: 25px; 
-  width: 100%; 
-  justify-content: center; 
-  padding-bottom: 15px; 
+.container {
+  display: inline-grid;
+  grid-template-columns: 25% auto 25%;
+  grid-gap: 25px;
+  width: 100%;
+  justify-content: center;
+  padding-bottom: 15px;
   margin-bottom: 15px;
 }
 
 @media (max-width: 1400px) {
-  .container { 
-    grid-template-columns: inherit; 
-    grid-template-rows: auto auto auto; 
+  .container {
+    grid-template-columns: inherit;
+    grid-template-rows: auto auto auto;
   }
-  
 }

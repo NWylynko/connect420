@@ -1,11 +1,12 @@
+# Connect420
+
+A school project to create a simple game, I choose connect 4.
 
 ### environment variables (.env)
-
 - REACT_APP_SERVER - default 'http://localhost:3001' - tells the client where the server is located at
 - REACT_APP_SERVER_API - default undefined - set to /api or /c420 if the server is behind something like nginx
 
 ## to use environment variables
-
 - in development
   - copy the .env.example to .env and run with yarn start
 

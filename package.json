@@ -7,8 +7,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint 'src/**/*.{ts,tsx}' --fix",
-    "lint:ci": "eslint 'src/**/*.{ts,tsx}'"
+    "lint": "eslint 'src/**/*.{ts,tsx}' --fix; npx stylelint 'src/**/*.css' --fix",
+    "lint:ci": "eslint 'src/**/*.{ts,tsx}'; npx stylelint 'src/**/*.css'"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -60,6 +60,8 @@
     "eslint-plugin-react-hooks": "^4.0.0",
     "prettier": "^2.0.5",
     "prettier-eslint": "^9.0.1",
-    "prettier-eslint-cli": "^5.0.0"
+    "prettier-eslint-cli": "^5.0.0",
+    "stylelint": "^13.4.1",
+    "stylelint-config-standard": "^20.0.0"
   }
 }

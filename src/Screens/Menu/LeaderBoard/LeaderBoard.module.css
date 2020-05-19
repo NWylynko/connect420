@@ -3,36 +3,37 @@
   max-width: 200px;
   padding-top: 15vh;
   display: inline-flex;
-  flex-direction: column
+  flex-direction: column;
 }
 
 @media (max-width: 1500px) {
-
   /* mobile / tablet */
 
   .container {
     width: 100%;
     padding: 10px;
   }
-  
 }
 
 .tableContainer {
   /* display: inline-flex; */
   justify-content: center;
+
   /* width: 'fit-content' */
   width: 200px;
+
   /* width: 20vw; */
+
   /* max-width: 20vw; */
   padding-left: 2vw;
 }
 
 .table {
-  padding: 25px; 
+  padding: 25px;
   padding-left: 50px;
   padding-right: 50px;
-  border: 3px solid var(--text); 
-  border-radius: 10px; 
+  border: 3px solid var(--text);
+  border-radius: 10px;
   transition: border-color 250ms ease-in;
 }
 

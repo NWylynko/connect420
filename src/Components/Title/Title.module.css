@@ -1,8 +1,6 @@
 .svg {
-
   fill: var(--text);
   transition: fill 250ms ease-in;
   width: 95%;
   margin-left: 2vmin;
-
 }

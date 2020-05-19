@@ -1,24 +1,22 @@
 .container {
   width: 100%;
-  text-align: center; 
+  text-align: center;
 }
 
 .page {
   display: inline-flex;
   flex-direction: row;
-  grid-template-columns: 20vw auto 20vw; 
+  grid-template-columns: 20vw auto 20vw;
 }
 
 @media (max-width: 1000px) {
-
   /* mobile / tablet */
 
   .page {
     display: inline-flex;
     flex-direction: column;
-    grid-template-columns: auto; 
+    grid-template-columns: auto;
   }
-  
 }
 
 .menu {
