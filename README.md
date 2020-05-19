@@ -14,7 +14,7 @@ A school project to create a simple game, I choose connect 4.
 
 - in docker
   - define env in docker / docker-compose
-```
+```yml
 version: '3'
 services:
   c420:
