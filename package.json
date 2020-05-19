@@ -8,7 +8,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint 'src/**/*.{ts,tsx}' --fix",
-    "lint:ci": "eslint 'src/**/*.{ts,tsx}'"
+    "lint:ci": "eslint 'src/**/*.{ts,tsx}'",
+    "storybook": "start-storybook"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -44,6 +45,9 @@
     "typescript": "~3.7.2"
   },
   "devDependencies": {
+    "@storybook/addon-docs": "^5.3.18",
+    "@storybook/preset-create-react-app": "^2.1.2",
+    "@storybook/react": "^5.3.18",
     "@typescript-eslint/eslint-plugin": "^2.30.0",
     "@typescript-eslint/parser": "^2.30.0",
     "babel-eslint": "^10.1.0",
