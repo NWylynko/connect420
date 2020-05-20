@@ -7,6 +7,7 @@ import { useParams, Redirect } from 'react-router-dom';
 import { StoreContext } from '../../context';
 import { server } from '../../config';
 import Chat from './Chat/Chat';
+import { EndScreen } from './EndScreen/EndScreen';
 
 let socket: SocketIOClient.Socket;
 
@@ -101,6 +102,7 @@ function GameBoard({
               />
             )),
           )}
+          <EndScreen />
         </div>
         <Chat socket={socket} room={room} />
       </div>
