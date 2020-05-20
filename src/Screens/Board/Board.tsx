@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styles from './Board.module.css';
-import io from 'socket.io-client';
 import statusDefs from '../../status';
 import Header from '../../Components/Header/index';
 import { useParams, Redirect } from 'react-router-dom';
 import { StoreContext } from '../../context';
-import { server } from '../../config';
 import Chat from './Chat/Chat';
 import { EndScreen } from './EndScreen/EndScreen';
-
-let socket: SocketIOClient.Socket;
+import { server } from '../../config';
 
 export default function App(): JSX.Element {
   const [board, setBoard] = useState<number[][]>();
@@ -17,36 +14,27 @@ export default function App(): JSX.Element {
   const [status, setStatus] = useState<number>(10);
   const [redirect, setRedirect] = useState<string>();
 
-  const { setInfo, name, connected, setConnected } = useContext(StoreContext);
+  const { socket, connected } = useContext(StoreContext);
   const { room } = useParams<{ room: string }>();
 
   useEffect(() => {
-    if (room) {
-      socket = io(server, { transports: ['websocket'] });
-
+    if (room && socket) {
       socket.on('connect', () => {
-        setConnected(true);
         setStatus(11);
         socket.emit('room', room);
-        if (name) socket.emit('name', name);
-        console.log(socket.id);
+
       });
-      socket.on('disconnect', () => {
-        setConnected(false);
+      socket.on('disconnect', () => {        
         setStatus(12);
       });
 
       socket.on('status', setStatus);
       socket.on('board', setBoard);
-      socket.on('info', setInfo);
       socket.on('setRoom', (room: string) => setRedirect('/' + room));
       socket.on('highlights', setHighlights);
     }
-
-    return (): void => {
-      socket.disconnect();
-    };
-  }, [room, setInfo, name, setConnected]);
+    
+  }, [room, socket]);
 
   useEffect(() => {
     console.log(connected ? 'connected' : 'disconnected');
@@ -85,6 +73,7 @@ function GameBoard({
   room: string;
   highlights: number[][];
 }): JSX.Element {
+  const { socket } = useContext(StoreContext);
   return (
     <>
       <Header subText={[statusDefs[status]]} roomID={room} />
@@ -121,15 +110,16 @@ function Item({
   status: number;
   highlighted: boolean;
 }): JSX.Element | null {
+  const { socket } = useContext(StoreContext);
   if (value === 0) {
     return (
-      <div onClick={(): void => addCoin(y, status)}>
+      <div onClick={(): void => addCoin(socket, y, status)}>
         <div className={styles.coin} />
       </div>
     );
   } else if (value === 1) {
     return (
-      <div onClick={(): void => addCoin(y, status)}>
+      <div onClick={(): void => addCoin(socket, y, status)}>
         <div
           className={[styles.coin, styles.red].join(' ')}
           style={highlighted ? { boxShadow: '0px 0px 2vmin 2vmin var(--player1)' } : {}}
@@ -138,7 +128,7 @@ function Item({
     );
   } else if (value === 2) {
     return (
-      <div onClick={(): void => addCoin(y, status)}>
+      <div onClick={(): void => addCoin(socket, y, status)}>
         <div
           className={[styles.coin, styles.yellow].join(' ')}
           style={highlighted ? { boxShadow: '0px 0px 2vmin 2vmin var(--player2)' } : {}}
@@ -150,7 +140,7 @@ function Item({
   }
 }
 
-function addCoin(y: number, status: number): void {
+function addCoin(socket: SocketIOClient.Socket, y: number, status: number): void {
   if (status === 1) {
     socket.emit('addCoin', { y });
   }
