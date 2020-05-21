@@ -19,22 +19,23 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     if (room && socket) {
-      socket.on('connect', () => {
+      console.log('yas');
+
+      if (connected) {
         setStatus(11);
         socket.emit('room', room);
-
-      });
-      socket.on('disconnect', () => {        
+      } else {
         setStatus(12);
-      });
+      }
 
       socket.on('status', setStatus);
       socket.on('board', setBoard);
       socket.on('setRoom', (room: string) => setRedirect('/' + room));
       socket.on('highlights', setHighlights);
+    } else {
+      console.log('nah');
     }
-    
-  }, [room, socket]);
+  }, [room, socket, connected]);
 
   useEffect(() => {
     console.log(connected ? 'connected' : 'disconnected');
