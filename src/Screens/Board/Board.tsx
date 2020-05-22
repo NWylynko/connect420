@@ -19,7 +19,6 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     if (room && socket) {
-      console.log('yas');
 
       if (connected) {
         setStatus(11);
@@ -32,8 +31,6 @@ export default function App(): JSX.Element {
       socket.on('board', setBoard);
       socket.on('setRoom', (room: string) => setRedirect('/' + room));
       socket.on('highlights', setHighlights);
-    } else {
-      console.log('nah');
     }
   }, [room, socket, connected]);
 
@@ -92,7 +89,8 @@ function GameBoard({
               />
             )),
           )}
-          <EndScreen />
+          <EndScreen show={true} room={room} />
+          {/* <EndScreen show={status === 6 || status === 7 || status === 8} /> */}
         </div>
         <Chat socket={socket} room={room} />
       </div>
