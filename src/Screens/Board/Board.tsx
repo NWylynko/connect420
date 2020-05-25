@@ -19,7 +19,6 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     if (room && socket) {
-
       if (connected) {
         setStatus(11);
         socket.emit('room', room);
@@ -32,6 +31,15 @@ export default function App(): JSX.Element {
       socket.on('setRoom', (room: string) => setRedirect('/' + room));
       socket.on('highlights', setHighlights);
     }
+
+    return (): void => {
+      if (room && socket) {
+        socket.off('status');
+        socket.off('board');
+        socket.off('setRoom');
+        socket.off('highlights');
+      }
+    };
   }, [room, socket, connected]);
 
   useEffect(() => {
@@ -51,7 +59,7 @@ export default function App(): JSX.Element {
   return (
     <>
       {redirect ? <Redirect to={redirect} /> : null}
-      {board ? (
+      {board && status !== 11 ? (
         <GameBoard board={board} status={status} room={room} highlights={highlights} />
       ) : (
         <Header subText={['Send this link to your friend for them to join:', `${server}/${room}`]} roomID={room} />
@@ -89,8 +97,7 @@ function GameBoard({
               />
             )),
           )}
-          <EndScreen show={true} room={room} />
-          {/* <EndScreen show={status === 6 || status === 7 || status === 8} /> */}
+          <EndScreen show={status === 6 || status === 7 || status === 8} room={room} />
         </div>
         <Chat socket={socket} room={room} />
       </div>

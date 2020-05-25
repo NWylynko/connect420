@@ -1,16 +1,24 @@
 .container {
-    position: absolute;
-    justify-content: center;
-    text-align: center;
-    width: 80vw;
+  position: absolute;
+  justify-content: center;
+  text-align: center;
+  width: 80vw;
+  animation: fadeIn ease 2s;
+}
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 @media (min-width: 900px) {
-    .container {
+  .container {
     top: 300px;
     width: 600px;
-
-
-    }
   }
+}

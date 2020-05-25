@@ -44,12 +44,11 @@ export default ({ children }: { children: React.ReactNode }): JSX.Element => {
     return (): void => {
       socket.disconnect();
     };
-
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (name) socket.emit('name', name);
-  }, [name])
+  }, [name]);
 
   const store: Istore = {
     socket,

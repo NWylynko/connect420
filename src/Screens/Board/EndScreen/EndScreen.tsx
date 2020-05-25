@@ -4,40 +4,43 @@ import MenuStyles from '../../Menu/Menu.module.css';
 import { Redirect } from 'react-router-dom';
 import { StoreContext } from '../../../context';
 
-export function EndScreen({ show, room } : { show: boolean, room: string }) {
+let want = true;
 
+export function EndScreen({ show, room }: { show: boolean; room: string }): JSX.Element {
   const [redirect, setRedirect] = useState<string>();
   const { socket, connected } = useContext(StoreContext);
-  const [wantsToReplay, setWantsToReplay] = useState<boolean>(false);
-  const [replayNum, setReplayNum] = useState<number>(0);
+  const [player1WantsToReplay, setPlayer1WantsToReplay] = useState<string>('var(--text)');
+  const [player2WantsToReplay, setPlayer2WantsToReplay] = useState<string>('var(--text)');
 
-  useEffect(() => {
-    socket.on("replay", (replay: string) => {
-      console.log(replay)
-      if (replay === "true") {
-        setReplayNum(num => num + 1);
+  useEffect((): (() => void) => {
+    socket.on('replay', (msg: { player: string; replay: string }) => {
+      console.log(msg);
+      if (msg.player === 'player1') {
+        setPlayer1WantsToReplay(msg.replay === 'true' ? 'var(--player1)' : 'var(--text)');
+      } else if (msg.player === 'player2') {
+        setPlayer2WantsToReplay(msg.replay === 'true' ? 'var(--player2)' : 'var(--text)');
       } else {
-        setReplayNum(num => num - 1);
+        throw new Error('player isnt player1 or player 2');
       }
     });
 
-    return(() => {
-      socket.on("replay", (): void => {});
-    })
-  }, [socket])
+    return (): void => {
+      socket.off('replay');
+    };
+  }, [socket]);
 
   useEffect(() => {
-    setWantsToReplay(false);
-    setReplayNum(0);
-  }, [room])
+    // reset, new room
+    setPlayer1WantsToReplay('var(--text)');
+    setPlayer2WantsToReplay('var(--text)');
+    want = true;
+  }, [room]);
 
-  function replay() {
+  function replay(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    event.preventDefault();
     if (socket && connected) {
-      setWantsToReplay((wantsToReplay: boolean) => {
-        console.log(!wantsToReplay)
-        socket.emit('replay', !wantsToReplay);
-        return !wantsToReplay;
-      })
+      socket.emit('replay', want);
+      want = !want;
     }
   }
 
@@ -45,14 +48,33 @@ export function EndScreen({ show, room } : { show: boolean, room: string }) {
     return <></>;
   }
 
-    return (
-      <>
+  return (
+    <>
       {redirect ? <Redirect to={redirect} /> : null}
       <div className={styles.container}>
         {/* <button className={MenuStyles.button} style={{width: '100%'}} >continue (0/2)</button> */}
-        <button className={MenuStyles.button} style={{width: '100%'}} onMouseUp={() => { replay(); }}>replay {replayNum}/2</button>
-        <button className={MenuStyles.button} style={{width: '100%'}} onMouseUp={() => setRedirect('/')}>back to Menu</button>
+        <button className={MenuStyles.button} style={{ width: '100%' }} onClick={replay}>
+          replay <Circle color={player1WantsToReplay} />
+          <Circle color={player2WantsToReplay} />
+        </button>
+        <button className={MenuStyles.button} style={{ width: '100%' }} onMouseUp={(): void => setRedirect('/')}>
+          back to Menu
+        </button>
       </div>
-      </>
-    )
-  }
+    </>
+  );
+}
+
+function Circle({
+  color = 'red',
+  stroke = 'black',
+}: {
+  color?: string | undefined;
+  stroke?: string | undefined;
+}): JSX.Element {
+  return (
+    <svg height="20" width="20" style={{ paddingRight: 2, paddingLeft: 2 }}>
+      <circle cx="9" cy="11" r="9" fill={color} stroke={stroke} />
+    </svg>
+  );
+}
