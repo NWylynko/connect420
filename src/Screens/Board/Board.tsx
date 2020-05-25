@@ -67,7 +67,10 @@ export default function App(): JSX.Element {
       {board ? (
         <GameBoard board={board} status={status} room={room} highlights={highlights} />
       ) : (
-        <Header subText={['Send this link to your friend for them to join:', `${server}/${room}`]} roomID={room} />
+        <Header
+          subText={['Send this link to your friend for them to join:', `${window.location.href}`]}
+          roomID={room}
+        />
       )}
     </>
   );
