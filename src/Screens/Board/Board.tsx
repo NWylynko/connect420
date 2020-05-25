@@ -6,7 +6,6 @@ import { useParams, Redirect } from 'react-router-dom';
 import { StoreContext } from '../../context';
 import Chat from './Chat/Chat';
 import { EndScreen } from './EndScreen/EndScreen';
-import { server } from '../../config';
 
 export default function App(): JSX.Element {
   const [board, setBoard] = useState<number[][]>();
