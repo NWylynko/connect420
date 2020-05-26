@@ -14,6 +14,12 @@ export default function Chat({ socket, room }: { socket: SocketIOClient.Socket; 
   const [message, setMessage] = useState<string>(''); // stores the message the user is typing
   const [messages, setMessages] = useState<Message[]>([]); // an arary of all messages sent and recieved
   const { connected } = useContext(StoreContext);
+
+  useEffect(() => {
+    setMessage('');
+    setMessages([]);
+  }, [room]);
+
   useEffect(() => {
     if (room && socket) {
       socket.on('message', ({ message, timestamp, from }: Message) => {

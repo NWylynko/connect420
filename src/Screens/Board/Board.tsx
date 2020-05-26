@@ -17,6 +17,14 @@ export default function App(): JSX.Element {
   const { room } = useParams<{ room: string }>();
 
   useEffect(() => {
+    // reset because new room
+    setBoard(undefined);
+    setHighlights([]);
+    setStatus(10);
+    setRedirect(undefined);
+  }, [room]);
+
+  useEffect(() => {
     if (room && socket) {
       if (connected) {
         setStatus(11);

@@ -31,6 +31,7 @@ export function EndScreen({ show, room }: { show: boolean; room: string }): JSX.
 
   useEffect(() => {
     // reset, new room
+    setRedirect(undefined);
     setPlayer1WantsToReplay('var(--text)');
     setPlayer2WantsToReplay('var(--text)');
     want = true;
