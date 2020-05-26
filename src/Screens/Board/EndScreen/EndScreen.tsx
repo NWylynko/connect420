@@ -55,8 +55,8 @@ export function EndScreen({ show, room }: { show: boolean; room: string }): JSX.
       <div className={styles.container}>
         {/* <button className={MenuStyles.button} style={{width: '100%'}} >continue (0/2)</button> */}
         <button className={MenuStyles.button} style={{ width: '100%' }} onClick={replay}>
-          replay <Circle color={player1WantsToReplay} />
-          <Circle color={player2WantsToReplay} />
+          replay <Circle color={player1WantsToReplay} stroke={'var(--background)'} />
+          <Circle color={player2WantsToReplay} stroke={'var(--background)'} />
         </button>
         <button className={MenuStyles.button} style={{ width: '100%' }} onMouseUp={(): void => setRedirect('/')}>
           back to Menu
