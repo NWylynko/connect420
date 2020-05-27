@@ -3,12 +3,13 @@ import styles from './EndScreen.module.css';
 import MenuStyles from '../../Menu/Menu.module.css';
 import { Redirect } from 'react-router-dom';
 import { StoreContext } from '../../../context';
+import { socket } from '../Board'
 
 let want = true;
 
 export function EndScreen({ show, room }: { show: boolean; room: string }): JSX.Element {
   const [redirect, setRedirect] = useState<string>();
-  const { socket, connected } = useContext(StoreContext);
+  const { connected } = useContext(StoreContext);
   const [player1WantsToReplay, setPlayer1WantsToReplay] = useState<string>('var(--text)');
   const [player2WantsToReplay, setPlayer2WantsToReplay] = useState<string>('var(--text)');
 
@@ -27,7 +28,7 @@ export function EndScreen({ show, room }: { show: boolean; room: string }): JSX.
     return (): void => {
       socket.off('replay');
     };
-  }, [socket]);
+  }, []);
 
   useEffect(() => {
     // reset, new room
