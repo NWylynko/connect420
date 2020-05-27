@@ -7,7 +7,7 @@ import { StoreContext } from '../../context';
 import Chat from './Chat/Chat';
 import { EndScreen } from './EndScreen/EndScreen';
 import { server } from '../../config';
-import io from 'socket.io-client'
+import io from 'socket.io-client';
 
 export let socket: SocketIOClient.Socket;
 
@@ -27,10 +27,9 @@ export default function App(): JSX.Element {
   useEffect(() => {
     // reset because new room
     setBoard(undefined);
-      setHighlights([]);
-      setStatus(10);
-      setRedirect(undefined);
-    
+    setHighlights([]);
+    setStatus(10);
+    setRedirect(undefined);
   }, [room]);
 
   useEffect(() => {
@@ -49,7 +48,7 @@ export default function App(): JSX.Element {
     return (): void => {
       socket.disconnect();
     };
-  }, [setConnected, setInfo])
+  }, [setConnected, setInfo]);
 
   useEffect(() => {
     if (room && socket) {

@@ -3,7 +3,7 @@ import styles from './EndScreen.module.css';
 import MenuStyles from '../../Menu/Menu.module.css';
 import { Redirect } from 'react-router-dom';
 import { StoreContext } from '../../../context';
-import { socket } from '../Board'
+import { socket } from '../Board';
 
 let want = true;
 
