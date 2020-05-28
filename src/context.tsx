@@ -1,3 +1,8 @@
+// context in react is a way to store global state
+// this fixes the issue of prop drilling
+// this can also be fixed with libraries like redux
+// but i prefer to use context as its built into react
+
 import React, { useState, createContext, useEffect } from 'react';
 
 export const StoreContext = createContext({} as Istore);

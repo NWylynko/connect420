@@ -17,6 +17,7 @@ export default function Themer({ children }: { children: React.ReactNode }): JSX
   const { theme, info } = useContext(StoreContext);
 
   function colors(): React.CSSProperties {
+    // custom themes can be added here, just add the type to the Themes interface
     const themes: Themes = {
       light: {
         '--text': '#3d3d3d',
